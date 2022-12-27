@@ -5,12 +5,14 @@ import './App.css'
 import { Button } from "@mui/material";
 
 
-const  App = () => {
+const App = () => {
   return (
     <>
-      <Button>text</Button>
-      <Button variant="contained">contained</Button>
-      <Button variant="outlined">outlined</Button>
+      <Button variant="outlined"
+        onClick={() => {
+          alert('clicked');
+        }}>
+        9mm</Button>
     </>
   );
 };
