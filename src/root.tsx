@@ -9,7 +9,7 @@ function Root() {
         <App />
         <Button variant="outlined"
             onClick={() => {
-            setAmmodata([{id:1,name:'SUPERMEGARIP',damage:99999}]);
+            setAmmodata([{name:'9×19 Pst gzh',damage:54,penetration:20,armordmg:33,accuracy:0,recoil:0,lightbleed:0,heavybleed:0}]);
             }}>
             Outlined</Button>
         <Tabletest entries={ammodata} />
