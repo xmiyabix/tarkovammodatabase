@@ -2,14 +2,17 @@ import * as React from 'react';
 import { DataGrid, GridColDef, GridValueGetterParams } from '@mui/x-data-grid';
 
 const columns: GridColDef[] = [
-  { field: 'id', headerName: 'name', width: 70 },
-  { field: 'damage', headerName: 'Damage', width: 130 },
-  { field: 'penetration', headerName: 'Penetration', width: 130 },
-  { field: 'armordmg', headerName: 'ArmorDMG', width: 130 },
-  { field: 'accuracy', headerName: 'accuracy', width: 130 },
-  { field: 'recoil', headerName: 'recoil', width: 130 },
-  { field: 'lightbleed', headerName: 'LightBleed', width: 130 },
-  { field: 'heavybleed', headerName: 'HeavyBleed', width: 130 }
+  { field: 'id', headerName: 'name', width: 200 },
+  { field: 'damage', headerName: 'Damage', width: 80},
+  { field: 'penetration', headerName: 'Penetration', width: 100 },
+  { field: 'armordmg', headerName: 'ArmorDMG', width: 100 },
+  { field: 'accuracy', headerName: 'Accuracy', width: 100 },
+  { field: 'recoil', headerName: 'Recoil', width: 80 },
+  { field: 'fragmentchance', headerName: 'Fragmentchance', width: 130 },
+  { field: 'ricochet', headerName: 'Ricochet', width: 100 },
+  { field: 'lightbleed', headerName: 'LightBleed', width: 100 },
+  { field: 'heavybleed', headerName: 'HeavyBleed', width: 100 },
+  { field: 'special', headerName: 'Special', width: 90 }
 ];
 //idを指定しないと動かない。本当はidの部分はnameとしたいがMUIデータグリッドには必ずidを指定しないといけない
 export type TableEntry = {
@@ -19,8 +22,12 @@ export type TableEntry = {
   armordmg : number;
   accuracy : number;
   recoil : number;
+  fragmentchance : number;
+  ricochet : number;
   lightbleed : number;
   heavybleed : number;
+  special : string;
+
 }
 
 type Props = {
@@ -29,11 +36,11 @@ type Props = {
 
 export default function DataTable(props:Props) {
   return (
-    <div style={{ height: 400, width: '100%' }}>
+    <div style={{ height: 600, width: 1000 }}>
       <DataGrid
         rows={props.entries}
         columns={columns}
-        pageSize={5}
+        pageSize={15}
         rowsPerPageOptions={[5]}
         checkboxSelection
       />

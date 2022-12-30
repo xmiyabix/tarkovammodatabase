@@ -2,6 +2,7 @@ import { Button } from "@mui/material";
 import React, { useState } from "react";
 import App from './App'
 import Tabletest, { TableEntry } from './Tabletest'
+import {getAmmodata}  from './ammodata'
 
 function Root() {
     const [ammodata, setAmmodata] = useState<TableEntry[]>([]);//TableEntry型の空配列を渡してあげている
@@ -9,9 +10,10 @@ function Root() {
         <App />
         <Button variant="outlined"
             onClick={() => {
-            setAmmodata([{id:'9×19 Pst gzh',damage:54,penetration:20,armordmg:33,accuracy:0,recoil:0,lightbleed:0,heavybleed:0}]);
+            const tmpname :string[] = ['9*19']
+            setAmmodata(getAmmodata(tmpname));
             }}>
-            Outlined</Button>
+            9mm</Button>
         <Tabletest entries={ammodata} />
     </div>);
 }
