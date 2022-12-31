@@ -13,7 +13,14 @@ function Root() {
             const tmpname :string[] = ['9*19']
             setAmmodata(getAmmodata(tmpname));
             }}>
-            9mm</Button>
+            9×19mm</Button>
+
+            <Button variant="outlined"
+            onClick={() => {
+            const tmpname :string[] = ['9*18']
+            setAmmodata(getAmmodata(tmpname));
+            }}>
+            9×18mm</Button>
         <Tabletest entries={ammodata} />
     </div>);
 }
