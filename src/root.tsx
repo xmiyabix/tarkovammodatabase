@@ -9,20 +9,6 @@ function Root() {
     const [ammodata, setAmmodata] = useState<TableEntry[]>([]);//TableEntry型の空配列を渡してあげている
     return (<div>
         <Buttons />
-        <Button variant="outlined"
-            onClick={() => {
-            const tmpname :string[] = ['9*19']
-            setAmmodata(getAmmodata(tmpname));
-            }}>
-            9×19mm</Button>
-
-            <Button variant="outlined"
-            onClick={() => {
-            const tmpname :string[] = ['9*18']
-            setAmmodata(getAmmodata(tmpname));
-            }}>
-            9×18mm</Button>
-        <Tabletest entries={ammodata} />
     </div>);
 }
 export default Root
