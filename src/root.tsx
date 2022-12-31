@@ -3,11 +3,12 @@ import React, { useState } from "react";
 import App from './App'
 import Tabletest, { TableEntry } from './Tabletest'
 import {getAmmodata}  from './ammodata'
+import Buttons from './buttons'
 
 function Root() {
     const [ammodata, setAmmodata] = useState<TableEntry[]>([]);//TableEntry型の空配列を渡してあげている
     return (<div>
-        <App />
+        <Buttons />
         <Button variant="outlined"
             onClick={() => {
             const tmpname :string[] = ['9*19']
