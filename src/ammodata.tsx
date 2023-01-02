@@ -220,25 +220,25 @@ const ammo8gaugedatas = [
     { id: '23x75mm "Zvezda" flashbang round', damage: 0, penetration: 0, armordmg: 0, accuracy: 0, recoil: 20, fragmentchance: 30, ricochet: 40, lightbleed: 0, heavybleed: 0, projectilespeed: 80, special: 'Flashbang' }
 ]
 //Rifleammo
-ammoMap.set('300blackout',ammo300datas);
-ammoMap.set('338lapua',ammo338lapuadatas);
-ammoMap.set('366tkm',ammo366tkmdatas);
-ammoMap.set('5.45*39',ammo54539datas);
-ammoMap.set('5.56*45',ammo55645datas);
-ammoMap.set('7.62*39',ammo76239datas);
-ammoMap.set('7.62*51',ammo76251datas);
-ammoMap.set('9*39',ammod939datas);
-ammoMap.set('12.7*55',ammo127datas);
+ammoMap.set('300blackout', ammo300datas);
+ammoMap.set('338lapua', ammo338lapuadatas);
+ammoMap.set('366tkm', ammo366tkmdatas);
+ammoMap.set('5.45*39', ammo54539datas);
+ammoMap.set('5.56*45', ammo55645datas);
+ammoMap.set('7.62*39', ammo76239datas);
+ammoMap.set('7.62*51', ammo76251datas);
+ammoMap.set('9*39', ammod939datas);
+ammoMap.set('12.7*55', ammo127datas);
 //pistol/pdwammo
-ammoMap.set('357magnum',ammo357datas);
-ammoMap.set('45acp',ammo45acpdatas);
-ammoMap.set('4.6*30',ammo46datas);
-ammoMap.set('5.7*28',ammo57datas);
-ammoMap.set('7.62*25',ammo76225ttdatas);
+ammoMap.set('357magnum', ammo357datas);
+ammoMap.set('45acp', ammo45acpdatas);
+ammoMap.set('4.6*30', ammo46datas);
+ammoMap.set('5.7*28', ammo57datas);
+ammoMap.set('7.62*25', ammo76225ttdatas);
 ammoMap.set('9*19', ammo919datas);
 ammoMap.set('9*18', ammo918datas);
 ammoMap.set('9*21', ammo918datas);
 //shotgunammo
-ammoMap.set('12gauge',ammo12gaugedatas);
-ammoMap.set('20gauge',ammo20gaugedatas);
-ammoMap.set('8gauge',ammo8gaugedatas);
+ammoMap.set('12gauge', ammo12gaugedatas);
+ammoMap.set('20gauge', ammo20gaugedatas);
+ammoMap.set('8gauge', ammo8gaugedatas);
