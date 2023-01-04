@@ -36,7 +36,7 @@ type Props = {
 
 export default function DataTable(props:Props) {
   return (
-    <div style={{ height: 600, width: 1200 }}>
+    <div style={{ height: 600, width: '100%' }}>
       <DataGrid
         rows={props.entries}
         columns={columns}
