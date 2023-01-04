@@ -15,7 +15,7 @@ export default function Footer() {
                     color="text.secondary"
                     component="p"
                 >
-                    xmiyabix(TwitterID:xmiyabix_VRC)
+                    xmiyabix(<a href="https://twitter.com/xmiyabix_vrc">TwitterID:xmiyabix_VRC</a>)
                 </Typography>
             </Box>
         </div >

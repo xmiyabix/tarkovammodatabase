@@ -8,11 +8,11 @@ const columns: GridColDef[] = [
   { field: 'armordmg', headerName: 'ArmorDMG', width: 100 },
   { field: 'accuracy', headerName: 'Accuracy', width: 100 },
   { field: 'recoil', headerName: 'Recoil', width: 80 },
-  { field: 'fragmentchance', headerName: 'Fragmentchance', width: 130 },
-  { field: 'ricochet', headerName: 'Ricochet', width: 100 },
+  //{ field: 'fragmentchance', headerName: 'Fragmentchance', width: 130 },
+  //{ field: 'ricochet', headerName: 'Ricochet', width: 100 },
   { field: 'lightbleed', headerName: 'LightBleed', width: 100 },
   { field: 'heavybleed', headerName: 'HeavyBleed', width: 100 },
-  { field: 'special', headerName: 'Special', width: 90 }
+  { field: 'special', headerName: 'Special', width: 200 }
 ];
 //idを指定しないと動かない。本当はidの部分はnameとしたいがMUIデータグリッドには必ずidを指定しないといけない
 export type TableEntry = {
