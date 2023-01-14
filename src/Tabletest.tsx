@@ -63,7 +63,7 @@ export default function DataTable(props:Props) {
         //この条件式を満たす場合、セルの色を変える
         getCellClassName={(params: GridCellParams<number>) => {
           if (params.value != null && params.field === 'damage'!) {
-            return params.value >= 75 ? 'hot' : 'cold';
+            return params.value >= 85 ? 'hot' : 'cold';
           }
           return '';
         }}

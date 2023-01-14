@@ -1,7 +1,7 @@
 import Tabletest, { TableEntry } from './Tabletest'
 
 export function getAmmodata(ids: string[]) {
-    let tmparr: TableEntry[] = ([]);
+    let tmparr: TableEntry[] = ([]);//tmparrに対してTableEntry型の空配列を渡している。
     ids.forEach(id => {
         if (ammoMap.has(id)) {
             tmparr = tmparr.concat(ammoMap.get(id)!);//!でヌルが入らないことを保証している。
@@ -227,6 +227,7 @@ ammoMap.set('5.45*39', ammo54539datas);
 ammoMap.set('5.56*45', ammo55645datas);
 ammoMap.set('7.62*39', ammo76239datas);
 ammoMap.set('7.62*51', ammo76251datas);
+ammoMap.set('7.62*54r', ammo76254rdatas);
 ammoMap.set('9*39', ammod939datas);
 ammoMap.set('12.7*55', ammo127datas);
 //pistol/pdwammo

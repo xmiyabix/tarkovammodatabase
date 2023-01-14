@@ -104,10 +104,10 @@ const Buttons = () => {
 
             <Button variant="outlined"
             onClick={() => {
-            const tmpname :string[] = ['7.62*51']
+            const tmpname :string[] = ['7.62*54r']
             setAmmodata(getAmmodata(tmpname));
             }}>
-            7.62×51mm</Button>
+            7.62×54Rmm</Button>
 
             <Button variant="outlined"
             onClick={() => {
