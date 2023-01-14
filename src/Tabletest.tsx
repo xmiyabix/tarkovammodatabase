@@ -1,5 +1,7 @@
 import * as React from 'react';
-import { DataGrid, GridColDef, GridValueGetterParams } from '@mui/x-data-grid';
+import { DataGrid, GridColDef, GridValueGetterParams,GridCellParams } from '@mui/x-data-grid';
+import clsx from 'clsx';
+import { Box } from '@mui/material';
 
 const columns: GridColDef[] = [
   { field: 'id', headerName: 'name', width: 200 },
@@ -36,14 +38,36 @@ type Props = {
 
 export default function DataTable(props:Props) {
   return (
-    <div style={{ height: 600, width: '100%' }}>
+    //Box要素の中に条件を満たした時の見た目を入れている
+    <Box
+      sx = {{
+        height: 600,
+        width: '100%',
+        '& .cold': {
+          //backgroundColor: '#ffffffff',
+          //color: '#1a3e72',
+        },
+        '& .hot': {
+          //backgroundColor: '#ff943975',
+          color: 'Red',
+        },
+      }}
+      >
       <DataGrid
         rows={props.entries}
         columns={columns}
         pageSize={15}
         rowsPerPageOptions={[5]}
         checkboxSelection
+        //条件式部
+        //この条件式を満たす場合、セルの色を変える
+        getCellClassName={(params: GridCellParams<number>) => {
+          if (params.value != null && params.field === 'damage'!) {
+            return params.value >= 75 ? 'hot' : 'cold';
+          }
+          return '';
+        }}
       />
-    </div>
+      </Box>
   );
 }
