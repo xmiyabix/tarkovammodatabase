@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import App from './App'
 import Tabletest, { TableEntry } from './Tabletest'
 import {getAmmodata}  from './ammodata'
+import Chart from './chart'
 import Buttons from './buttons'
 import Footer from './Footer'
 import Header from './Header'
@@ -13,7 +14,8 @@ function Root() {
     const [ammodata, setAmmodata] = useState<TableEntry[]>([]);//TableEntry型の空配列を渡してあげている
     return (<div className='container'>
         <Header />
-        <Buttons />
+        <Chart />
+        <Button/>
         <Footer />
     </div>);
 }
