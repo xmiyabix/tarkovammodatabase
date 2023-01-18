@@ -11,6 +11,7 @@ export function getAmmodata(ids: string[]) {
     return (tmparr);
 };
 
+
 const ammoMap = new Map<string, TableEntry[]>();
 
 

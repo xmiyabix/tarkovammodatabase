@@ -15,7 +15,7 @@ function Root() {
     return (<div className='container'>
         <Header />
         <Chart />
-        <Button/>
+        <Buttons/>
         <Footer />
     </div>);
 }
