@@ -1,35 +1,44 @@
-import React, { PureComponent } from 'react';
+import React, { PureComponent, useState } from 'react';
 import { ScatterChart, Scatter, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, TooltipProps, Legend } from 'recharts';
 import { ValueType, NameType } from 'recharts/types/component/DefaultTooltipContent';
+import { getAmmodata } from './ammodata';
+import { TableEntry } from './Tabletest';
 const data = [
-  { x: 100, y: 200, z: 200 },
-  { x: 120, y: 100, z: 260 },
-  { x: 170, y: 300, z: 400 },
-  { x: 140, y: 250, z: 280 },
-  { x: 150, y: 400, z: 500 },
-  { x: 110, y: 280, z: 200 },
+  { r: 100, g: 200, b: 200 },
+  { r: 120, g: 100, b: 260 },
+  { r: 170, g: 300, b: 400 },
+  { r: 140, g: 250, b: 280 },
+  { r: 150, g: 400, b: 500 },
+  { r: 110, g: 280, b: 200 },
 ];
 
+const [ammodata, setAmmodata] = useState<TableEntry[]>([]);//TableEntry型の空配列を渡してあげている
+const CustomTooltip = ({
+  active,
+  payload,
+  label,
+  //ーTypeにすることで、さまざまな変数型でも受け取るようになる（オブジェクト型）
+}: TooltipProps<ValueType, NameType>) => {
+  if (active) {
+    return (
+      <div className="custom-tooltip">
+        <p className="label">{`${label} : ${payload?.[0].value}`}</p>
+        <p className="desc">Anything you want can be displayed here.</p>
+      </div>
+    );
+  }
+
+  return null;
+};
+
+const tmpname :string[] = ['9*19']
+setAmmodata(getAmmodata(tmpname));
+
+type Props = {
+  entries : TableEntry[];
+};
 export default class Example extends PureComponent {
   //static demoUrl = 'https://codesandbox.io/s/simple-scatter-chart-edeu2s';
-
-
-  CustomTooltip = ({//const CustomTooltipだとエラーがでるのでConst外した
-    active,
-    payload,
-    label,
-  }: TooltipProps<ValueType, NameType>) => {
-    if (active) {
-      return (
-        <div className="custom-tooltip">
-          <p className="label">{`${label} : ${payload?.[0].value}`}</p>
-          <p className="desc">Anything you want can be displayed here.</p>
-        </div>
-      );
-    }
-  
-    return null;
-  };
 
   render() {
     return (
@@ -43,10 +52,10 @@ export default class Example extends PureComponent {
           }}
         >
           <CartesianGrid />
-          <XAxis type="number" dataKey="x" name="stature" unit="cm" />
-          <YAxis type="number" dataKey="y" name="weight" unit="kg" />
-          <Tooltip content={<this.CustomTooltip />} />
-          <Scatter name="A school" data={data} fill="#8884d8" />
+          <XAxis type="number" dataKey="x" name="stature" unit="pene" />
+          <YAxis type="number" dataKey="y" name="weight" unit="DMG" />
+          <Tooltip content={<CustomTooltip />} />
+          <Scatter name="A school" data={props} fill="#8884d8" />
         </ScatterChart>
       </ResponsiveContainer>
     );
