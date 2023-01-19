@@ -37,28 +37,28 @@ setAmmodata(getAmmodata(tmpname));
 type Props = {
   entries : TableEntry[];
 };
-export default class Example extends PureComponent {
-  //static demoUrl = 'https://codesandbox.io/s/simple-scatter-chart-edeu2s';
 
-  render() {
-    return (
-      <ResponsiveContainer width="100%" height={400}>
-        <ScatterChart
-          margin={{
-            top: 20,
-            right: 20,
-            bottom: 20,
-            left: 20,
-          }}
-        >
-          <CartesianGrid />
-          <XAxis type="number" dataKey="x" name="stature" unit="pene" />
-          <YAxis type="number" dataKey="y" name="weight" unit="DMG" />
-          <Tooltip content={<CustomTooltip />} />
-          <Scatter name="A school" data={props} fill="#8884d8" />
-        </ScatterChart>
-      </ResponsiveContainer>
-    );
-  }
+const Example2 = (props:Props)=>{
+  return (
+    <ResponsiveContainer width="100%" height={400}>
+      <ScatterChart
+        margin={{
+          top: 20,
+          right: 20,
+          bottom: 20,
+          left: 20,
+        }}
+      >
+        <CartesianGrid />
+        <XAxis type="number" dataKey="x" name="stature" unit="pene" />
+        <YAxis type="number" dataKey="y" name="weight" unit="DMG" />
+        <Tooltip content={<CustomTooltip />} />
+        <Scatter name="A school" data={props.entries} fill="#8884d8" />
+      </ScatterChart>
+    </ResponsiveContainer>
+  );
 }
+
+export default Example2;
+
 //<Tooltip content={<this.CustomTooltip />} />はthis.をつけないと動かない。（本来は必要なさそう）
