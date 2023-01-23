@@ -7,7 +7,7 @@ import Chart from './chart'
 import Buttons from './buttons'
 import Footer from './Footer'
 import Header from './Header'
-import Testtable from './cellcolorchange'
+import Headertest from './test_muiappbar'
 import './root.css'
 
 function Root() {
@@ -16,7 +16,8 @@ function Root() {
     //
     const [ammodata, setAmmodata] = useState<TableEntry[]>([]);//TableEntry型の空配列を渡してあげている
     return (<div className='container'>
-        <Header />
+        <Headertest/>
+        {/*<Header />*/}
         <Buttons applyAmmoData={(entries)=>setAmmodata(entries)}/>
         <Chart entries={ammodata}/>
         <Tabletest entries={ammodata} />
