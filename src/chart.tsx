@@ -30,7 +30,9 @@ type Props = {
 //props.entriesを作っておくことで、Rootから入力を受け取れるようにする
 const Example2 = (props:Props)=>{
   return (
-    <ResponsiveContainer width="100%" height={400}>
+    //Width９９％に設定するとresizeされるようになる？なぜ？
+    //上の件で参考にしたサイトhttps://stackoverflow.com/questions/50891591/recharts-responsive-container-does-not-resize-correctly-in-flexbox
+    <ResponsiveContainer width="99%" height={400}>
       <ScatterChart
         margin={{
           top: 20,
