@@ -28,7 +28,7 @@ type Props = {
   entries : TableEntry[];
 };
 //props.entriesを作っておくことで、Rootから入力を受け取れるようにする
-const Example2 = (props:Props)=>{
+const Ammochart = (props:Props)=>{
   return (
     //Width９９％に設定するとresizeされるようになる？なぜ？
     //上の件で参考にしたサイトhttps://stackoverflow.com/questions/50891591/recharts-responsive-container-does-not-resize-correctly-in-flexbox
@@ -42,8 +42,8 @@ const Example2 = (props:Props)=>{
         }}
       >
         <CartesianGrid />
-        <XAxis type="number" dataKey="damage" name="stature" unit="DMG" ticks={[20,40,60,80,100,120,140]} />
-        <YAxis type="number" dataKey="penetration" name="weight" unit="pene"ticks={[10,20,30,40,50,60]} />
+        <XAxis type="number" dataKey="damage" name="stature" unit="DMG"  tickCount={6} tickSize={6}/>
+        <YAxis type="number" dataKey="penetration" name="weight" unit="pene"ticks={[10,20,30,40,50,60]} tickCount={6} tickSize={6} />
         <Scatter name="A school" data={props.entries} fill="#8884d8" >
           <LabelList dataKey="id" position='bottom'/>
         </Scatter>
@@ -53,6 +53,6 @@ const Example2 = (props:Props)=>{
   );
 }
 
-export default Example2;
+export default Ammochart;
 
 //<Tooltip content={<this.CustomTooltip />} />はthis.をつけないと動かない。（本来は必要なさそう）
