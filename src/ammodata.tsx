@@ -239,7 +239,7 @@ ammoMap.set('5.7*28', ammo57datas);
 ammoMap.set('7.62*25', ammo76225ttdatas);
 ammoMap.set('9*19', ammo919datas);
 ammoMap.set('9*18', ammo918datas);
-ammoMap.set('9*21', ammo918datas);
+ammoMap.set('9*21', ammo921datas);
 //shotgunammo
 ammoMap.set('12gauge', ammo12gaugedatas);
 ammoMap.set('20gauge', ammo20gaugedatas);
