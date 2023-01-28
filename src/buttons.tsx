@@ -1,176 +1,89 @@
-import { Button, Typography } from "@mui/material";
+import { Button, ToggleButton, Typography, ToggleButtonGroup } from "@mui/material";
 import React, { useState } from 'react';
 import { getAmmodata } from './ammodata';
 import Tabletest, { TableEntry } from './Tabletest'
+import CheckIcon from '@mui/icons-material/Check';
 
 type Props = {
   applyAmmoData: (entries: TableEntry[]) => void;
 }
 
 const Buttons = (props: Props) => {
-  //const [ammodata, props.applyAmmoData] = useState<TableEntry[]>([]);//TableEntry型の空配列を渡してあげている
+
+  //ammoIdという変数に入れるために、setAmmoIdという関数を呼び出す
+  const [ammoId, setAmmoId] = React.useState(() => ['9*19']);
+
+  const handleChange = (
+    //React.MouseEventを入れることで、handleChangeで求められている引数を満たしている（なお、実際には機能としては使っていない）
+    //あくまでサンプルコードそのものである。（実際に自前で書いたとしてもいるので忘れないこと。）
+    event: React.MouseEvent<HTMLElement>,
+    //弾丸の名前を渡す
+    selected: string[],
+  ) => {
+    //propsでdataを変更するためのhandleが渡される
+    //.は取り出す物の指定。()は関数を呼び出す
+    props.applyAmmoData(getAmmodata(selected))
+    setAmmoId(selected);
+  };
+
   return (
     <>
       <Typography variant="h6" align="left" color='text.primary' gutterBottom>
         Pistol Ammos
       </Typography>
-      <Button variant="outlined"
-        onClick={() => {
-          const tmpname: string[] = ['9*19']
-          props.applyAmmoData(getAmmodata(tmpname));
-        }}>
-        9×19mm</Button>
 
-      <Button variant="outlined"
-        onClick={() => {
-          const tmpname: string[] = ['9*18']
-          props.applyAmmoData(getAmmodata(tmpname));
-        }}>
-        9×18mm</Button>
+      <ToggleButtonGroup
+        size="small"
+        value={ammoId}
+        onChange={handleChange}
+        aria-label="text formatting"
+      >
 
-      <Button variant="outlined"
-        onClick={() => {
-          const tmpname: string[] = ['7.62*25']
-          props.applyAmmoData(getAmmodata(tmpname));
-        }}>
-        7.62×25mmTT</Button>
+        <ToggleButton value="9*19">9×19mm</ToggleButton>
+        <ToggleButton value="9*18">9×18mm</ToggleButton>
+        <ToggleButton value="7.62*25">7.62×25mmTT</ToggleButton>
+        <ToggleButton value="45acp">45ACP</ToggleButton>
+        <ToggleButton value="9*21">9×21mm</ToggleButton>
+        <ToggleButton value="4.6*30">4.6×30mm</ToggleButton>
+        <ToggleButton value="5.7*28">5.7×28mm</ToggleButton>
+        <ToggleButton value="357magnum">357Magnum</ToggleButton>
 
-      <Button variant="outlined"
-        onClick={() => {
-          const tmpname: string[] = ['45acp']
-          props.applyAmmoData(getAmmodata(tmpname));
-        }}>
-        45ACP</Button>
-
-      <Button variant="outlined"
-        onClick={() => {
-          const tmpname: string[] = ['9*21']
-          props.applyAmmoData(getAmmodata(tmpname));
-        }}>
-        9×21mm</Button>
-
-      <Button variant="outlined"
-        onClick={() => {
-          const tmpname: string[] = ['4.6*30']
-          props.applyAmmoData(getAmmodata(tmpname));
-        }}>
-        4.6×30mm</Button>
-
-      <Button variant="outlined"
-        onClick={() => {
-          const tmpname: string[] = ['5.7*28']
-          props.applyAmmoData(getAmmodata(tmpname));
-        }}>
-        5.7×28mm</Button>
-
-      <Button variant="outlined"
-        onClick={() => {
-          const tmpname: string[] = ['357magnum']
-          props.applyAmmoData(getAmmodata(tmpname));
-        }}>
-        357Magnum</Button>
+      </ToggleButtonGroup>
       <br />
       <Typography variant="h6" align="left" color='text.primary' gutterBottom>
         RifleAmmos
       </Typography>
-      <Button variant="outlined"
-        onClick={() => {
-          const tmpname: string[] = ['5.45*39']
-          props.applyAmmoData(getAmmodata(tmpname));
-        }}>
-        5.45×39mm</Button>
-
-      <Button variant="outlined"
-        onClick={() => {
-          const tmpname: string[] = ['5.56*45']
-          props.applyAmmoData(getAmmodata(tmpname));
-        }}>
-        5.56×45mm</Button>
-
-      <Button variant="outlined"
-        onClick={() => {
-          const tmpname: string[] = ['7.62*39']
-          props.applyAmmoData(getAmmodata(tmpname));
-        }}>
-        7.62×39mm</Button>
-
-      <Button variant="outlined"
-        onClick={() => {
-          const tmpname: string[] = ['7.62*51']
-          props.applyAmmoData(getAmmodata(tmpname));
-        }}>
-        7.62×51mm</Button>
-
-      <Button variant="outlined"
-        onClick={() => {
-          const tmpname: string[] = ['366tkm']
-          props.applyAmmoData(getAmmodata(tmpname));
-        }}>
-        366TKM</Button>
-
-      <Button variant="outlined"
-        onClick={() => {
-          const tmpname: string[] = ['7.62*54r']
-          props.applyAmmoData(getAmmodata(tmpname));
-        }}>
-        7.62×54Rmm</Button>
-
-      <Button variant="outlined"
-        onClick={() => {
-          const tmpname: string[] = ['9*39']
-          props.applyAmmoData(getAmmodata(tmpname));
-        }}>
-        9×39mm</Button>
-
-      <Button variant="outlined"
-        onClick={() => {
-          const tmpname: string[] = ['300blackout']
-          props.applyAmmoData(getAmmodata(tmpname));
-        }}>
-        300Blackout</Button>
-
-      <Button variant="outlined"
-        onClick={() => {
-          const tmpname: string[] = ['12.7*55']
-          props.applyAmmoData(getAmmodata(tmpname));
-        }}>
-        12.7×55mm</Button>
-
-      <Button variant="outlined"
-        onClick={() => {
-          const tmpname: string[] = ['338lapua']
-          props.applyAmmoData(getAmmodata(tmpname));
-        }}>
-        338lapua</Button>
-
+      <ToggleButtonGroup
+        size="small"
+        value={ammoId}
+        onChange={handleChange}
+        aria-label="text formatting"
+      >
+        <ToggleButton value="5.45*39">5.45×39mm</ToggleButton>
+        <ToggleButton value="5.56*45">5.56×45mm</ToggleButton>
+        <ToggleButton value="7.62*39">7.62×39mm</ToggleButton>
+        <ToggleButton value="7.62*51">7.62×51mm</ToggleButton>
+        <ToggleButton value="366tkm">366TKM</ToggleButton>
+        <ToggleButton value="7.62*54r">7.62×54Rmm</ToggleButton>
+        <ToggleButton value="9*39">9×39mm</ToggleButton>
+        <ToggleButton value="300blackout">300Blackout</ToggleButton>
+        <ToggleButton value="12.7*55">12.7×55mm</ToggleButton>
+        <ToggleButton value="338lapua">338lapua</ToggleButton>
+      </ToggleButtonGroup>
       <br />
       <Typography variant="h6" align="left" color='text.primary' gutterBottom>
         ShotgunAmmos
       </Typography>
-
-      <Button variant="outlined"
-        onClick={() => {
-          const tmpname: string[] = ['12gauge']
-          props.applyAmmoData(getAmmodata(tmpname));
-        }}>
-        12gauge</Button>
-
-      <Button variant="outlined"
-        onClick={() => {
-          const tmpname: string[] = ['20gauge']
-          props.applyAmmoData(getAmmodata(tmpname));
-        }}>
-        20gauge</Button>
-
-      <Button variant="outlined"
-        onClick={() => {
-          const tmpname: string[] = ['8gauge']
-          props.applyAmmoData(getAmmodata(tmpname));
-        }}>
-        8gauge</Button>
-
-
-
+      <ToggleButtonGroup
+        size="small"
+        value={ammoId}
+        onChange={handleChange}
+        aria-label="text formatting"
+      >
+        <ToggleButton value="12gauge">12gauge</ToggleButton>
+        <ToggleButton value="20gauge">20gauge</ToggleButton>
+        <ToggleButton value="8gauge">8gauge</ToggleButton>
+      </ToggleButtonGroup>
     </>
   );
 };
