@@ -8,6 +8,7 @@ import Buttons from './buttons'
 import Footer from './Footer'
 import Header from './Header'
 import Headertest from './test_muiappbar'
+import Armordmgcalc from "./armordmgcalc";
 import './root.css'
 
 const darkTheme = createTheme({
@@ -15,7 +16,7 @@ const darkTheme = createTheme({
         mode: 'light',
     },
 });
-
+const tmp:number = 10;
 function Root() {
     //setAmmodataはammodataというストレージにアクセスするためのもの 次のammodataに内容を渡して自身に再描画をかける
     //useStateは再描画がかかった時にReact側で保存するためのもの
@@ -29,6 +30,7 @@ function Root() {
         <Buttons applyAmmoData={(entries)=>setAmmodata(entries)}/>
         <Chart entries={ammodata}/>
         <Tabletest entries={ammodata} />
+        <Armordmgcalc Testvalue={10}/>
         <Footer />
         </ThemeProvider>
     </div>);
