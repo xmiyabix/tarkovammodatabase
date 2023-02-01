@@ -2,13 +2,13 @@ import React, { PureComponent, useState } from 'react';
 import { ScatterChart, Scatter, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, TooltipProps, Legend ,LabelList} from 'recharts';
 import { ValueType, NameType } from 'recharts/types/component/DefaultTooltipContent';
 import { getAmmodata } from './ammodata';
-import { TableEntry } from './Tabletest';
+import { AmmoDataEntry } from './Tabletest';
 
 const CustomTooltip = (args: TooltipProps<ValueType, NameType>) => {
   if (args.active) {
     //console.log(args)
     //payloadにargsにammoのデータが入っているところを入れる
-    const payload : TableEntry = args.payload?.[0].payload;
+    const payload : AmmoDataEntry = args.payload?.[0].payload;
     //payloadから簡単に取り出せるようになる
     return (
       <div className="custom-tooltip">
@@ -25,7 +25,7 @@ const CustomTooltip = (args: TooltipProps<ValueType, NameType>) => {
 
 
 type Props = {
-  entries : TableEntry[];
+  entries : AmmoDataEntry[];
 };
 //props.entriesを作っておくことで、Rootから入力を受け取れるようにする
 const Ammochart = (props:Props)=>{

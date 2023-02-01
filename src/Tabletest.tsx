@@ -17,7 +17,7 @@ const columns: GridColDef[] = [
   { field: 'special', headerName: 'Special', width: 200 }
 ];
 //idを指定しないと動かない。本当はidの部分はnameとしたいがMUIデータグリッドには必ずidを指定しないといけない
-export type TableEntry = {
+export type AmmoDataEntry = {
   id : string;
   damage : number;
   penetration : number;
@@ -33,7 +33,7 @@ export type TableEntry = {
 }
 
 type Props = {
-  entries : TableEntry[];
+  entries : AmmoDataEntry[];
 };
 
 export default function DataTable(props:Props) {

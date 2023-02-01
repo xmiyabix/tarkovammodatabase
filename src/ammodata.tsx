@@ -1,7 +1,7 @@
-import Tabletest, { TableEntry } from './Tabletest'
+import Tabletest, { AmmoDataEntry } from './Tabletest'
 
 export function getAmmodata(ids: string[]) {
-    let tmparr: TableEntry[] = ([]);//tmparrに対してTableEntry型の空配列を渡している。
+    let tmparr: AmmoDataEntry[] = ([]);//tmparrに対してAmmoDataEntry型の空配列を渡している。
     ids.forEach(id => {
         if (ammoMap.has(id)) {
             tmparr = tmparr.concat(ammoMap.get(id)!);//!でヌルが入らないことを保証している。
@@ -12,7 +12,7 @@ export function getAmmodata(ids: string[]) {
 };
 
 
-const ammoMap = new Map<string, TableEntry[]>();
+const ammoMap = new Map<string, AmmoDataEntry[]>();
 
 
 

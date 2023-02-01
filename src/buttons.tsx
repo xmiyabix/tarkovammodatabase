@@ -1,11 +1,11 @@
 import { Button, ToggleButton, Typography, ToggleButtonGroup } from "@mui/material";
 import React, { useState } from 'react';
 import { getAmmodata } from './ammodata';
-import Tabletest, { TableEntry } from './Tabletest'
+import Tabletest, { AmmoDataEntry } from './Tabletest'
 import CheckIcon from '@mui/icons-material/Check';
 
 type Props = {
-  applyAmmoData: (entries: TableEntry[]) => void;
+  applyAmmoData: (entries: AmmoDataEntry[]) => void;
 }
 
 const Buttons = (props: Props) => {
