@@ -12,7 +12,7 @@ import { AmmoDataEntry as AmmoDataEntry } from './Tabletest';
 
 type Props = {
     Testvalue:number;
-    entries : AmmoDataEntry|undefined;
+    entries : AmmoDataEntry|undefined;//|undefinedを付けることによりunderfinedを許容している。
 };
 //アーマーのデータ＋球のデータで計算を行う
 const Armordmgcalc = (props: Props) => {
