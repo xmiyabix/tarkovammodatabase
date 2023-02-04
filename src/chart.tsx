@@ -1,8 +1,8 @@
 import React, { FunctionComponent, PureComponent, useState } from 'react';
-import { ScatterChart, Scatter, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, TooltipProps, Legend, LabelList } from 'recharts';
+import { ScatterChart, Scatter, XAxis,Line, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, TooltipProps, Legend, LabelList } from 'recharts';
 import { ValueType, NameType } from 'recharts/types/component/DefaultTooltipContent';
 import { getAmmodata } from './ammodata';
-import { AmmoDataEntry } from './Tabletest';
+import {AmmoDataEntry,SVG} from './ammodata'
 
 const CustomTooltip = (args: TooltipProps<ValueType, NameType>) => {
   if (args.active) {
@@ -23,21 +23,22 @@ const CustomTooltip = (args: TooltipProps<ValueType, NameType>) => {
   return null;
 };
 
-const CostomizedDot: FunctionComponent<any> = (props: any) => {
-  
-  const { cx, cy, value } = props;
+const CustomizedDot = (props:any) => {
+  console.log(props)
+  const { cx, cy, stroke, dotsvg } = props;
   return (
     <svg
       x={cx-12.5}
       y={cy-12.5}
-      width={50}
-      height={50}
+      width = {50}
+      height ={50}
+      viewBox='0 0 50 50'
     >
       
       <path 
-      d={props.entries.dotsvg.shape} 
-      stroke={props.entries.dotsvg.color} 
-      strokeWidth={props.entries.dotsvg.width}></path>
+      d={dotsvg.shape} 
+      stroke={dotsvg.color} 
+      strokeWidth={dotsvg.width}></path>
     </svg>
   )
 }
@@ -64,7 +65,7 @@ const Ammochart = (props: Props) => {
         <CartesianGrid />
         <XAxis type="number" dataKey="damage" name="stature" unit="DMG" tickCount={6} tickSize={6} />
         <YAxis type="number" dataKey="penetration" name="weight" unit="pene" ticks={[10, 20, 30, 40, 50, 60]} tickCount={6} tickSize={6} />
-        <Scatter data={props.entries} fill="#8884d8" shape={<CostomizedDot/>}>
+        <Scatter data={props.entries}  fill="#8884d8" shape={<CustomizedDot/>}>
           <LabelList dataKey="id" position='bottom' />
         </Scatter>
         <Tooltip content={<CustomTooltip />} />

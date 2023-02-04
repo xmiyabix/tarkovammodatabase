@@ -5,7 +5,7 @@ import './App.css'
 import { Button } from "@mui/material";
 import React from 'react';
 import { SettingsCellOutlined } from '@mui/icons-material';
-import { AmmoDataEntry as AmmoDataEntry } from './Tabletest';
+import {AmmoDataEntry} from './ammodata'
 
 
 

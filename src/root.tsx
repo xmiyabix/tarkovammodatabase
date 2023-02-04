@@ -1,7 +1,7 @@
 import { Button, createTheme, CssBaseline, ThemeProvider } from "@mui/material";
 import React, { useState } from "react";
 import App from './App'
-import Tabletest, { AmmoDataEntry as AmmoDataEntry } from './Tabletest'
+import {AmmoDataEntry} from './ammodata'
 import { getAmmodata } from './ammodata'
 import Chart from './chart'
 import Buttons from './buttons'
@@ -10,6 +10,7 @@ import Header from './Header'
 import Headertest from './test_muiappbar'
 import Armordmgcalc from "./armordmgcalc";
 import './root.css'
+import Tabletest from "./Tabletest";
 
 const tarkovTheme = createTheme({
     palette: {

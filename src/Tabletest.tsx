@@ -2,6 +2,7 @@ import * as React from 'react';
 import { DataGrid, GridColDef, GridValueGetterParams,GridCellParams } from '@mui/x-data-grid';
 import clsx from 'clsx';
 import { Box } from '@mui/material';
+import {AmmoDataEntry} from './ammodata'
 
 const columns: GridColDef[] = [
   { field: 'id', headerName: 'name', width: 200 },
@@ -17,25 +18,7 @@ const columns: GridColDef[] = [
   { field: 'special', headerName: 'Special', width: 200 }
 ];
 //idを指定しないと動かない。本当はidの部分はnameとしたいがMUIデータグリッドには必ずidを指定しないといけない
-export type AmmoDataEntry = {
-  id : string;
-  damage : number;
-  penetration : number;
-  armordmg : number;
-  accuracy : number;
-  recoil : number;
-  fragmentchance : number;
-  ricochet : number;
-  lightbleed : number;
-  heavybleed : number;
-  special : string;
-  iconsvg?: {
-    shape:string;
-    color:string;
-    width:number;
-  };
 
-}
 
 type Props = {
   entries : AmmoDataEntry[];
