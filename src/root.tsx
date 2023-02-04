@@ -11,6 +11,22 @@ import Headertest from './test_muiappbar'
 import Armordmgcalc from "./armordmgcalc";
 import './root.css'
 
+const tarkovTheme = createTheme({
+    palette: {
+        mode: 'light',
+        primary: {
+            main: '#1b5e20',
+            light: '#4c8c4a',
+            dark: '#003300'
+        },
+        secondary: {
+            main:'#263238',
+            light:'#4f5b62',
+            dark:'#000a12'
+        }
+    }
+})
+
 const darkTheme = createTheme({
     palette: {
         mode: 'light',
@@ -24,12 +40,12 @@ function Root() {
     const [ammodata, setAmmodata] = useState<AmmoDataEntry[]>([]);//AmmoDataEntry型の空配列を渡してあげている
     const [ammoSelect, setAmmoSelect] = useState<AmmoDataEntry>();
     return (<div className='container'>
-        <ThemeProvider theme={darkTheme}>
+        <ThemeProvider theme={tarkovTheme}>
             <Headertest />
             <CssBaseline />
             {/*<Header />*/}
             <Buttons applyAmmoData={(entries) => setAmmodata(entries)} />
-            <Chart entries={ammodata} />F
+            <Chart entries={ammodata} />
             <Tabletest entries={ammodata} />
             <Armordmgcalc Testvalue={10} entries={ammoSelect} />
             <Footer />

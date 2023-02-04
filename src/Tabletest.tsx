@@ -29,6 +29,11 @@ export type AmmoDataEntry = {
   lightbleed : number;
   heavybleed : number;
   special : string;
+  iconsvg?: {
+    shape:string;
+    color:string;
+    width:number;
+  };
 
 }
 
