@@ -24,7 +24,11 @@ const tarkovTheme = createTheme({
             main:'#263238',
             light:'#4f5b62',
             dark:'#000a12'
-        }
+        },
+        background: {
+            default: '#212121',
+        },
+        text: { primary: '#feebc8' },
     }
 })
 

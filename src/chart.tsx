@@ -63,12 +63,12 @@ const Ammochart = (props: Props) => {
         }}
       >
         <CartesianGrid />
-        <XAxis type="number" dataKey="damage" name="stature" unit="DMG" tickCount={6} tickSize={6} />
-        <YAxis type="number" dataKey="penetration" name="weight" unit="pene" ticks={[10, 20, 30, 40, 50, 60]} tickCount={6} tickSize={6} />
-        <Scatter data={props.entries}  fill="#8884d8" shape={<CustomizedDot/>}>
+        <Tooltip content={<CustomTooltip />} />
+        <XAxis type="number"  stroke="#fbd38d"  dataKey="damage" name="stature" unit="DMG" tickCount={6} tickSize={6} />
+        <YAxis type="number"  stroke="#fbd38d" dataKey="penetration" name="weight" unit="pene" ticks={[10, 20, 30, 40, 50, 60]} tickCount={6} tickSize={6} />
+        <Scatter data={props.entries}   fill="#fbd38d" shape={<CustomizedDot/>}>
           <LabelList dataKey="id" position='bottom' />
         </Scatter>
-        <Tooltip content={<CustomTooltip />} />
       </ScatterChart>
     </ResponsiveContainer>
   );
