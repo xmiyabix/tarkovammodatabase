@@ -1,5 +1,5 @@
 import React, { FunctionComponent, PureComponent, useState } from 'react';
-import { ScatterChart, Scatter, XAxis,Line, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, TooltipProps, Legend, LabelList } from 'recharts';
+import { ScatterChart, Scatter, XAxis,Line, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, TooltipProps, Legend, LabelList, ReferenceLine } from 'recharts';
 import { ValueType, NameType } from 'recharts/types/component/DefaultTooltipContent';
 import { getAmmodata } from './ammodata';
 import {AmmoDataEntry,SVG} from './ammodata'
@@ -62,12 +62,13 @@ const Ammochart = (props: Props) => {
           left: 20,
         }}
       >
-        <CartesianGrid />
+        <CartesianGrid stroke="#fbd38d"/>
         <Tooltip content={<CustomTooltip />} />
-        <XAxis type="number"  stroke="#fbd38d"  dataKey="damage" name="stature" unit="DMG" tickCount={6} tickSize={6} />
-        <YAxis type="number"  stroke="#fbd38d" dataKey="penetration" name="weight" unit="pene" ticks={[10, 20, 30, 40, 50, 60]} tickCount={6} tickSize={6} />
-        <Scatter data={props.entries}   fill="#fbd38d" shape={<CustomizedDot/>}>
-          <LabelList dataKey="id" position='bottom' />
+        <XAxis type="number"  style={{ fontWeight: 'bold' }} stroke="#fbd38d"  dataKey="damage" name="stature" unit="DMG" tickCount={6} tickSize={6} />
+        <YAxis type="number"  style={{ fontWeight: 'bold' }} stroke="#fbd38d" dataKey="penetration" name="weight" unit="pene" ticks={[10, 20, 30, 40, 50, 60]} tickCount={6} tickSize={6} />
+        <ReferenceLine x="85" stroke="#fbd38d" label="Thorax" strokeDasharray={'3 3'}/>
+        <Scatter data={props.entries}   stroke="#fbd38d"　　 shape={<CustomizedDot/>}>
+          <LabelList dataKey="id" position='bottom' style={{ pointerEvents:'none' }} />
         </Scatter>
       </ScatterChart>
     </ResponsiveContainer>
