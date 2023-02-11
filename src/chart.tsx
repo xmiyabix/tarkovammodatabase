@@ -1,8 +1,8 @@
 import React, { FunctionComponent, PureComponent, useState } from 'react';
-import { ScatterChart, Scatter, XAxis,Line, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, TooltipProps, Legend, LabelList, ReferenceLine } from 'recharts';
+import { ScatterChart, Scatter, XAxis, Line, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, TooltipProps, Legend, LabelList, ReferenceLine } from 'recharts';
 import { ValueType, NameType } from 'recharts/types/component/DefaultTooltipContent';
 import { getAmmodata } from './ammodata';
-import {AmmoDataEntry,SVG} from './ammodata'
+import { AmmoDataEntry, SVG } from './ammodata'
 
 const CustomTooltip = (args: TooltipProps<ValueType, NameType>) => {
   if (args.active) {
@@ -23,22 +23,22 @@ const CustomTooltip = (args: TooltipProps<ValueType, NameType>) => {
   return null;
 };
 
-const CustomizedDot = (props:any) => {
+const CustomizedDot = (props: any) => {
   console.log(props)
   const { cx, cy, stroke, dotsvg } = props;
   return (
     <svg
-      x={cx-12.5}
-      y={cy-12.5}
-      width = {50}
-      height ={50}
+      x={cx - 12.5}
+      y={cy - 12.5}
+      width={50}
+      height={50}
       viewBox='0 0 50 50'
     >
-      
-      <path 
-      d={dotsvg.shape} 
-      stroke={dotsvg.color} 
-      strokeWidth={dotsvg.width}></path>
+
+      <path
+        d={dotsvg.shape}
+        stroke={dotsvg.color}
+        strokeWidth={dotsvg.width}></path>
     </svg>
   )
 }
@@ -62,13 +62,42 @@ const Ammochart = (props: Props) => {
           left: 20,
         }}
       >
-        <CartesianGrid stroke="#fbd38d"/>
+        <CartesianGrid 
+        stroke="#fbd38d" //枠線のカラー変更
+        />
         <Tooltip content={<CustomTooltip />} />
-        <XAxis type="number"  style={{ fontWeight: 'bold' }} stroke="#fbd38d"  dataKey="damage" name="stature" unit="DMG" tickCount={6} tickSize={6} />
-        <YAxis type="number"  style={{ fontWeight: 'bold' }} stroke="#fbd38d" dataKey="penetration" name="weight" unit="pene" ticks={[10, 20, 30, 40, 50, 60]} tickCount={6} tickSize={6} />
-        <ReferenceLine x="85" stroke="#fbd38d" label="Thorax" strokeDasharray={'3 3'}/>
-        <Scatter data={props.entries}   stroke="#fbd38d"　　 shape={<CustomizedDot/>}>
-          <LabelList dataKey="id" position='bottom' style={{ pointerEvents:'none' }} />
+        <XAxis
+          type="number"
+          style={{ fontWeight: 'bold' }} //フォントのスタイルの設定
+          stroke="#fbd38d"  //枠線のカラーの設定
+          dataKey="damage"
+          name="stature"
+          unit="DMG"
+          tickCount={6}
+          tickSize={6} />
+        <YAxis
+          type="number"
+          style={{ fontWeight: 'bold' }} //フォントのスタイルの設定
+          stroke="#fbd38d" //枠線のカラー適用
+          dataKey="penetration"
+          name="weight"
+          unit="pene"
+          ticks={[10, 20, 30, 40, 50, 60]}
+          tickCount={6}
+          tickSize={6} />
+        <ReferenceLine
+          x="85"//ソーラックスのHP。仕様変更に応じて変化させること
+          stroke="#fbd38d"
+          label="Thorax"
+          strokeDasharray={'3 3'} />
+        <Scatter
+          data={props.entries}
+          stroke="#fbd38d"
+          shape={<CustomizedDot />}>
+          <LabelList
+            dataKey="id"
+            position='bottom'
+            style={{ pointerEvents: 'none' }} />
         </Scatter>
       </ScatterChart>
     </ResponsiveContainer>
