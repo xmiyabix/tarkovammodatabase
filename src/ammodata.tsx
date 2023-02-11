@@ -14,7 +14,7 @@ export function getAmmodata(ids: string[]) {
 
 
 export type AmmoDataEntry = {
-    id : string;
+    id : string;//id
     damage : number;
     penetration : number;
     armordmg : number;
