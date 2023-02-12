@@ -24,7 +24,6 @@ const CustomTooltip = (args: TooltipProps<ValueType, NameType>) => {
 };
 
 const CustomizedDot = (props: any) => {
-  console.log(props)
   const { cx, cy, stroke, dotsvg } = props;
   return (
     <svg

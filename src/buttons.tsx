@@ -1,7 +1,7 @@
 import { Button, ToggleButton, Typography, ToggleButtonGroup } from "@mui/material";
 import React, { useState } from 'react';
 import { getAmmodata } from './ammodata';
-import {AmmoDataEntry} from './ammodata'
+import { AmmoDataEntry } from './ammodata'
 import CheckIcon from '@mui/icons-material/Check';
 
 type Props = {
@@ -39,7 +39,11 @@ const Buttons = (props: Props) => {
         aria-label="text formatting"
       >
 
-        <ToggleButton value="9*19">9×19mm</ToggleButton>
+        <ToggleButton value="9*19">9×19mm
+          <svg viewBox="0 0 24 24" width="24" height="24" fill="#fff">
+            <path d="M19 6L6 19M6 6l13 13" stroke="#fff" stroke-width="2" stroke-linecap="round" />
+          </svg>
+        </ToggleButton>
         <ToggleButton value="9*18">9×18mm</ToggleButton>
         <ToggleButton value="7.62*25">7.62×25mmTT</ToggleButton>
         <ToggleButton value="45acp">45ACP</ToggleButton>
