@@ -33,6 +33,7 @@ const Buttons = (props: Props) => {
       </Typography>
 
       <ToggleButtonGroup
+        style={{flexWrap:"wrap"}}
         size="small"
         value={ammoId}
         onChange={handleChange}
@@ -58,6 +59,7 @@ const Buttons = (props: Props) => {
         RifleAmmos
       </Typography>
       <ToggleButtonGroup
+        style={{flexWrap:"wrap"}}
         size="small"
         value={ammoId}
         onChange={handleChange}
@@ -79,6 +81,7 @@ const Buttons = (props: Props) => {
         ShotgunAmmos
       </Typography>
       <ToggleButtonGroup
+        style={{flexWrap:"wrap"}}
         size="small"
         value={ammoId}
         onChange={handleChange}
