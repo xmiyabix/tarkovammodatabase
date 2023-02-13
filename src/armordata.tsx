@@ -1,3 +1,5 @@
+
+
 export function getArmordata(ids: string[]) {
     let tmparr: ArmorDataEntry[] = ([]);//tmparrに対してArmorDataEntry型の空配列を渡している。
     ids.forEach(id => {
@@ -8,7 +10,6 @@ export function getArmordata(ids: string[]) {
     armorMap.get(ids[0]);
     return (tmparr);
 };
-
 export type ArmorDataEntry = {
     id : string;
     type : string;
@@ -22,6 +23,7 @@ export type ArmorDataEntry = {
     weight : number;
   
   }
+
 
   const armorMap = new Map<string, ArmorDataEntry[]>();
 
