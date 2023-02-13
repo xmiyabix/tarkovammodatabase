@@ -1,7 +1,6 @@
 import React, { FunctionComponent, PureComponent, useState } from 'react';
 import { ScatterChart, Scatter, XAxis, Line, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, TooltipProps, Legend, LabelList, ReferenceLine } from 'recharts';
 import { ValueType, NameType } from 'recharts/types/component/DefaultTooltipContent';
-import { getAmmodata } from './ammodata';
 import { AmmoDataEntry, SVG } from './ammodata'
 
 const CustomTooltip = (args: TooltipProps<ValueType, NameType>) => {
@@ -24,7 +23,7 @@ const CustomTooltip = (args: TooltipProps<ValueType, NameType>) => {
 };
 
 const CustomizedDot = (props: any) => {
-  const { cx, cy, stroke, dotsvg } = props;
+  const { cx, cy, stroke ,dotsvg} = props;
   return (
     <svg
       x={cx - 12.5}
@@ -37,18 +36,20 @@ const CustomizedDot = (props: any) => {
       <path
         d={dotsvg.shape}
         stroke={dotsvg.color}
-        strokeWidth={dotsvg.width}></path>
+        strokeWidth={dotsvg.width}>
+      </path>
     </svg>
   )
 }
 
-
-
 type Props = {
-  entries: AmmoDataEntry[];
+  entries: AmmoDataEntry[];//union型にすることにより、underfinedを許容している。
 };
 //props.entriesを作っておくことで、Rootから入力を受け取れるようにする
-const Ammochart = (props: Props) => {
+const Ammochart = ({entries}:Props) => {
+  
+
+  
   return (
     //Width９９％に設定するとresizeされるようになる？なぜ？
     //上の件で参考にしたサイトhttps://stackoverflow.com/questions/50891591/recharts-responsive-container-does-not-resize-correctly-in-flexbox
@@ -61,8 +62,8 @@ const Ammochart = (props: Props) => {
           left: 20,
         }}
       >
-        <CartesianGrid 
-        stroke="#fbd38d" //枠線のカラー変更
+        <CartesianGrid
+          stroke="#fbd38d" //枠線のカラー変更
         />
         <Tooltip content={<CustomTooltip />} />
         <XAxis
@@ -90,7 +91,7 @@ const Ammochart = (props: Props) => {
           label="Thorax"
           strokeDasharray={'3 3'} />
         <Scatter
-          data={props.entries}
+          data={entries}
           stroke="#fbd38d"
           shape={<CustomizedDot />}>
           <LabelList
