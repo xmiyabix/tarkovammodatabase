@@ -9,7 +9,7 @@ import Header from './Header'
 import Headertest from './Appbar'
 import Armordmgcalc from "./armordmgcalc";
 import './root.css'
-import Tabletest from "./Tabletest";
+import Table from "./Table";
 
 const tarkovTheme = createTheme({
     palette: {
@@ -41,16 +41,15 @@ function Root() {
     //setAmmodataはammodataというストレージにアクセスするためのもの 次のammodataに内容を渡して自身に再描画をかける
     //useStateは再描画がかかった時にReact側で保存するためのもの
     //
-    const [ammodata, setAmmodata] = useState<AmmoDataEntry[]>([]);//AmmoDataEntry型の空配列を渡してあげている
+    const [ammodata, setAmmodata] = useState<AmmoDataEntry[]>([]);//AmmoDataList型の空を渡してあげている
     const [ammoSelect, setAmmoSelect] = useState<AmmoDataEntry>();
     return (<div className='container'>
         <ThemeProvider theme={tarkovTheme}>
             <Headertest />
             <CssBaseline />
-            {/*<Header />*/}
             <Buttons applyAmmoData={(entries) => setAmmodata(entries)} />
             <Chart entries={ammodata} />
-            <Tabletest entries={ammodata} />
+            <Table entries={ammodata} />
             <Armordmgcalc Testvalue={10} entries={ammoSelect} />
             <Footer />
         </ThemeProvider>

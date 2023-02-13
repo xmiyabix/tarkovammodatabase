@@ -21,10 +21,11 @@ const columns: GridColDef[] = [
 
 
 type Props = {
-  entries : AmmoDataEntry[];
+  entries: AmmoDataEntry[];//union型にすることにより、underfinedを許容している。
 };
-
-export default function DataTable(props:Props) {
+//参考 https://zenn.dev/ynakamura/articles/e562376735d398
+export default function DataTable({entries}:Props) //
+{
   return (
     //Box要素の中に条件を満たした時の見た目を入れている
     <Box
@@ -42,7 +43,7 @@ export default function DataTable(props:Props) {
       }}
       >
       <DataGrid
-        rows={props.entries}
+        rows={entries}
         columns={columns}
         pageSize={15}
         rowsPerPageOptions={[5]}
