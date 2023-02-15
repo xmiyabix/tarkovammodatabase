@@ -52,6 +52,7 @@ function Root() {
             <Table entries={ammodata} />
             <Armordmgcalc Testvalue={10} entries={ammoSelect} />
             <Footer />
+            <img src="src/assets/image/9*19/9x19ap.png" />
         </ThemeProvider>
     </div>);
 }
