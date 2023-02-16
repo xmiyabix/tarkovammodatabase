@@ -1,12 +1,17 @@
 import * as React from 'react';
-import { DataGrid, GridColDef, GridValueGetterParams,GridCellParams } from '@mui/x-data-grid';
+import { DataGrid, GridColDef, GridValueGetterParams, GridCellParams } from '@mui/x-data-grid';
 import clsx from 'clsx';
 import { Box } from '@mui/material';
-import {AmmoDataEntry} from './ammodata'
+import { AmmoDataEntry } from './ammodata'
 
 const columns: GridColDef[] = [
+  { field: 'image', headerName: 'icon', width: 60 ,
+  //renderCellとは？セル単位でレンダリングを行うコンポーネント？関数？の一種。引数としてParamsを持っていて、そこから画像のパスを受け取っている。
+  renderCell: (params) => (
+    <img src={params.value} alt="image" style={{ width: "99%" }} />
+  )},
   { field: 'id', headerName: 'name', width: 200 },
-  { field: 'damage', headerName: 'Damage', width: 80},
+  { field: 'damage', headerName: 'Damage', width: 80 },
   { field: 'penetration', headerName: 'Penetration', width: 100 },
   { field: 'armordmg', headerName: 'ArmorDMG', width: 100 },
   { field: 'accuracy', headerName: 'Accuracy', width: 100 },
@@ -24,12 +29,12 @@ type Props = {
   entries: AmmoDataEntry[];//union型にすることにより、underfinedを許容している。
 };
 //参考 https://zenn.dev/ynakamura/articles/e562376735d398
-export default function DataTable({entries}:Props) //
+export default function DataTable({ entries }: Props) //
 {
   return (
     //Box要素の中に条件を満たした時の見た目を入れている
     <Box
-      sx = {{
+      sx={{
         height: 600,
         width: '100%',
         '& .cold': {
@@ -41,7 +46,7 @@ export default function DataTable({entries}:Props) //
           color: 'Red',
         },
       }}
-      >
+    >
       <DataGrid
         rows={entries}
         columns={columns}
@@ -57,6 +62,6 @@ export default function DataTable({entries}:Props) //
           return '';
         }}
       />
-      </Box>
+    </Box>
   );
 }

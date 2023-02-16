@@ -11,10 +11,12 @@ const CustomTooltip = (args: TooltipProps<ValueType, NameType>) => {
     //payloadから簡単に取り出せるようになる
     return (
       <div className="custom-tooltip">
+        <p className="desc">{`PENE:${payload.image}`}</p>
+        <img src={payload.image}></img>
+          <p className="label">{`NAME:${payload.id}`}</p>
+          <p className="label">{`DMG:${payload.damage}`}</p>
+          <p className="desc">{`PENE:${payload.penetration}`}</p>
 
-        <p className="label">{`NAME:${payload.id}`}</p>
-        <p className="label">{`DMG:${payload.damage}`}</p>
-        <p className="desc">{`PENE:${payload.penetration}`}</p>
       </div>
     );
   }
@@ -23,7 +25,7 @@ const CustomTooltip = (args: TooltipProps<ValueType, NameType>) => {
 };
 
 const CustomizedDot = (props: any) => {
-  const { cx, cy, stroke ,dotsvg} = props;
+  const { cx, cy, stroke, dotsvg } = props;
   return (
     <svg
       x={cx - 12.5}
@@ -46,10 +48,10 @@ type Props = {
   entries: AmmoDataEntry[];//union型にすることにより、underfinedを許容している。
 };
 //props.entriesを作っておくことで、Rootから入力を受け取れるようにする
-const Ammochart = ({entries}:Props) => {
-  
+const Ammochart = ({ entries }: Props) => {
 
-  
+
+
   return (
     //Width９９％に設定するとresizeされるようになる？なぜ？
     //上の件で参考にしたサイトhttps://stackoverflow.com/questions/50891591/recharts-responsive-container-does-not-resize-correctly-in-flexbox
