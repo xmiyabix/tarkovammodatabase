@@ -1,3 +1,5 @@
+import { Box } from '@mui/material';
+import { height, width } from '@mui/system';
 import React, { FunctionComponent, PureComponent, useState } from 'react';
 import { ScatterChart, Scatter, XAxis, Line, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, TooltipProps, Legend, LabelList, ReferenceLine } from 'recharts';
 import { ValueType, NameType } from 'recharts/types/component/DefaultTooltipContent';
@@ -10,18 +12,34 @@ const CustomTooltip = (args: TooltipProps<ValueType, NameType>) => {
     const payload: AmmoDataEntry = args.payload?.[0].payload;
     //payloadから簡単に取り出せるようになる
     return (
-      <div className="custom-tooltip">
-        <p className="desc">{`PENE:${payload.image}`}</p>
-        <img src={payload.image}></img>
+      <Box
+        sx={{
+          width: "99%",
+          height: "99%",
+          backgroundColor: 'primary.dark',
+          '&:hover': {
+            backgroundColor: 'primary.main',
+            opacity: [0.9, 0.8, 0.7],
+          },
+        }}>
+        <div className="custom-tooltip">
+          <img src={payload.image}></img>
           <p className="label">{`NAME:${payload.id}`}</p>
           <p className="label">{`DMG:${payload.damage}`}</p>
           <p className="desc">{`PENE:${payload.penetration}`}</p>
 
-      </div>
+        </div>
+      </Box>
     );
   }
 
   return null;
+};
+
+const tooltipStyle = {
+  backgroundColor: "blue",
+  color: "white",
+  fontSize: "14px",
 };
 
 const CustomizedDot = (props: any) => {
