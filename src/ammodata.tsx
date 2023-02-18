@@ -43,7 +43,9 @@ function register(name: string, svg: SVG, arr: AmmoDataEntryPre[]) {
     ammoMap.set(name, res)
 }
 
-register('9*19', { shape: 'M19 6L6 19M6 6l13 13', color: '#fff', width: 2 }, [
+export const PistolAmmos = Object.freeze(['9x19mm'])
+
+register('9x19mm', { shape: 'M19 6L6 19M6 6l13 13', color: '#fff', width: 2 }, [
     { id: '9x19mm AP 6.3', damage: 52, penetration: 30, armordmg: 8, accuracy: 0, recoil: 0, fragmentchance: 5, ricochet: 20, lightbleed: 0, heavybleed: 0, projectilespeed: 392, special: 'none', image: 'src/assets/image/9*19/9x19ap.png' },
     { id: '9x19mm Green Tracer', damage: 58, penetration: 14, armordmg: 3, accuracy: -5, recoil: -6, fragmentchance: 15, ricochet: 5, lightbleed: 0, heavybleed: 0, projectilespeed: 365, special: 'Tracer (green)', image: 'src/assets/image/9*19/9x19ap.png' },
     { id: '9x19mm Luger CCI', damage: 70, penetration: 10, armordmg: 8, accuracy: 0, recoil: 0, fragmentchance: 25, ricochet: 6.50, lightbleed: 20, heavybleed: 20, projectilespeed: 420, special: 'none', image: 'src/assets/image/9*19/9x19ap.png' },
