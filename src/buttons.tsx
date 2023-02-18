@@ -1,8 +1,11 @@
 import { Button, ToggleButton, Typography, ToggleButtonGroup } from "@mui/material";
 import React, { useState } from 'react';
-import { getAmmodata } from './ammodata';
+import { getAmmodata ,PistolAmmos} from './ammodata';
 import { AmmoDataEntry } from './ammodata'
 import CheckIcon from '@mui/icons-material/Check';
+import tarkovapi from './Test_tarkovapi copy';
+
+tarkovapi()
 
 type Props = {
   applyAmmoData: (entries: AmmoDataEntry[]) => void;
@@ -11,8 +14,7 @@ type Props = {
 const Buttons = (props: Props) => {
 
   //ammoIdという変数に入れるために、setAmmoIdという関数を呼び出す
-  const [ammoId, setAmmoId] = React.useState(() => ['9*19']);
-
+  const [ammoId, setAmmoId] = React.useState(() => ['9x19mm']);
   const handleChange = (
     //React.MouseEventを入れることで、handleChangeで求められている引数を満たしている（なお、実際には機能としては使っていない）
     //あくまでサンプルコードそのものである。（実際に自前で書いたとしてもいるので忘れないこと。）
@@ -25,6 +27,23 @@ const Buttons = (props: Props) => {
     props.applyAmmoData(getAmmodata(selected))
     setAmmoId(selected);
   };
+  const ToggleButtonWithSVG = (
+    ammoName: string,
+  ) => {
+    const svg = getAmmodata([ammoName])[0].dotsvg!
+    return (
+      <ToggleButton value={ammoName}>{ammoName}
+        <svg viewBox="0 0 24 24" width="24" height="24" fill="#fff">
+          <path d={svg.shape} stroke="#fff" stroke-width="2" stroke-linecap="round" />
+        </svg>
+      </ToggleButton>
+    )
+  }
+
+  const res = []
+  for(const ammo in PistolAmmos){
+    res.push(ToggleButtonWithSVG(ammo))
+  }
 
   return (
     <>
@@ -33,18 +52,20 @@ const Buttons = (props: Props) => {
       </Typography>
 
       <ToggleButtonGroup
-        style={{flexWrap:"wrap"}}
+        style={{ flexWrap: "wrap" }}
         size="small"
         value={ammoId}
         onChange={handleChange}
         aria-label="text formatting"
       >
 
-        <ToggleButton value="9*19">9×19mm
+        <ToggleButton value="9x19mm">9×19mm
           <svg viewBox="0 0 24 24" width="24" height="24" fill="#fff">
-            <path d="M19 6L6 19M6 6l13 13" stroke="#fff" stroke-width="2" stroke-linecap="round" />
+            <path d={getAmmodata(["9x19mm"])[0].dotsvg?.shape} stroke="#fff" stroke-width="2" stroke-linecap="round" />
           </svg>
         </ToggleButton>
+        <Button></Button>
+        {PistolAmmos.map(ammo=>ToggleButtonWithSVG(ammo))}
         <ToggleButton value="9*18">9×18mm</ToggleButton>
         <ToggleButton value="7.62*25">7.62×25mmTT</ToggleButton>
         <ToggleButton value="45acp">45ACP</ToggleButton>
@@ -59,7 +80,7 @@ const Buttons = (props: Props) => {
         RifleAmmos
       </Typography>
       <ToggleButtonGroup
-        style={{flexWrap:"wrap"}}
+        style={{ flexWrap: "wrap" }}
         size="small"
         value={ammoId}
         onChange={handleChange}
@@ -81,7 +102,7 @@ const Buttons = (props: Props) => {
         ShotgunAmmos
       </Typography>
       <ToggleButtonGroup
-        style={{flexWrap:"wrap"}}
+        style={{ flexWrap: "wrap" }}
         size="small"
         value={ammoId}
         onChange={handleChange}
