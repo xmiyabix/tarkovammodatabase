@@ -6,6 +6,7 @@ import { AmmoDataEntry } from './ammodata'
 
 const columns: GridColDef[] = [
   { field: 'image', headerName: 'icon', width: 60 ,
+  //オーバーライド
   //renderCellとは？セル単位でレンダリングを行うコンポーネント？関数？の一種。引数としてParamsを持っていて、そこから画像のパスを受け取っている。
   renderCell: (params) => (
     <img src={params.value} alt="image" style={{ width: "99%" }} />
