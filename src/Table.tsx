@@ -2,32 +2,38 @@ import * as React from 'react';
 import { DataGrid, GridColDef, GridValueGetterParams, GridCellParams } from '@mui/x-data-grid';
 import clsx from 'clsx';
 import { Box } from '@mui/material';
-import { AmmoDataEntry } from './AmmoData'
+import { AmmoData,getAmmodata} from './TarkovApiService';
 
 const columns: GridColDef[] = [
-  { field: 'image', headerName: 'icon', width: 60 ,
-  //オーバーライド
-  //renderCellとは？セル単位でレンダリングを行うコンポーネント？関数？の一種。引数としてParamsを持っていて、そこから画像のパスを受け取っている。
-  renderCell: (params) => (
-    <img src={params.value} alt="image" style={{ width: "99%" }} />
-  )},
-  { field: 'id', headerName: 'name', width: 200 },
-  { field: 'damage', headerName: 'Damage', width: 80 },
-  { field: 'penetration', headerName: 'Penetration', width: 100 },
-  { field: 'armordmg', headerName: 'ArmorDMG', width: 100 },
-  { field: 'accuracy', headerName: 'Accuracy', width: 100 },
-  { field: 'recoil', headerName: 'Recoil', width: 80 },
+  { field: 'iconLink', headerName: 'icon', width: 60 ,
+    //オーバーライド
+    //renderCellとは？セル単位でレンダリングを行うコンポーネント？関数？の一種。引数としてParamsを持っていて、そこから画像のパスを受け取っている。
+    renderCell: (params) => {
+      console.log("renderTest",params)
+      return(
+        <div>
+          <p style={{position: 'fixed',top:'100%',width: "100%"}}>{params.id}</p>
+          <img src={params.value} alt="image" style={{ width: "100%" }} />
+        </div>
+        
+    )}},
+  { field: 'name', headerName: 'name', width: 200 },
+  { field: 'totalDamage', headerName: 'Damage', width: 80 },
+  { field: 'penetrationPower', headerName: 'Penetration', width: 100 },
+  { field: 'armorDamage', headerName: 'ArmorDMG', width: 100 },
+  { field: 'accuracyModifier', headerName: 'Accuracy', width: 100 },
+  { field: 'recoilModifier', headerName: 'Recoil', width: 80 },
   //{ field: 'fragmentchance', headerName: 'Fragmentchance', width: 130 },
   //{ field: 'ricochet', headerName: 'Ricochet', width: 100 },
-  { field: 'lightbleed', headerName: 'LightBleed', width: 100 },
-  { field: 'heavybleed', headerName: 'HeavyBleed', width: 100 },
-  { field: 'special', headerName: 'Special', width: 200 }
+  { field: 'lightBleedModifier', headerName: 'LightBleed', width: 100 },
+  { field: 'heavyBleedModifier', headerName: 'HeavyBleed', width: 100 },
+  { field: 'tracer', headerName: 'tracer', width: 200 }
 ];
 //idを指定しないと動かない。本当はidの部分はnameとしたいがMUIデータグリッドには必ずidを指定しないといけない
 
 
 type Props = {
-  entries: AmmoDataEntry[];//union型にすることにより、underfinedを許容している。
+  entries: AmmoData[];//union型にすることにより、underfinedを許容している。
 };
 //参考 https://zenn.dev/ynakamura/articles/e562376735d398
 export default function DataTable({ entries }: Props) //

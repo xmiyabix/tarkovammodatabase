@@ -80,7 +80,8 @@ export const AmmoCateMap = new Map<string, string[]>([
 const allCalibers:string[] = []
 AmmoCateMap.forEach(value=>allCalibers.push(...value))
 
-type AmmoData = {
+export type AmmoData = {
+    id:string;
     name:string;
     shortName: string;
     iconLink: string;
@@ -243,12 +244,17 @@ type AmmoDataRaw = {
 function processData(from:AmmoDataRaw):AmmoData{
     return{
         ...from,
+        id:from.item.name,
         name:from.item.name,
         shortName:from.item.shortName,
         iconLink:from.item.iconLink,
         caliber:toCaliberName(from.caliber),
         totalDamage:from.damage*from.projectileCount,
         totalArmorDamage:from.armorDamage*from.projectileCount,
+        accuracyModifier:from.accuracyModifier*100,
+        recoilModifier:from.recoilModifier*100,
+        lightBleedModifier:from.lightBleedModifier*100,
+        heavyBleedModifier:from.heavyBleedModifier*100,
         crafts:from.item.craftsFor.map(craft=>({
             duration:craft.duration,
             count:craft.rewardItems[0].count,
@@ -270,7 +276,7 @@ function processData(from:AmmoDataRaw):AmmoData{
             priceRUB:entry.priceRUB,
             required:entry.requirements
         })),
-        tracer:(from.tracer?"":from.tracerColor)
+        tracer:(from.tracer?from.tracerColor:"")
     }
 }
 

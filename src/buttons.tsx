@@ -1,12 +1,9 @@
 import { Button, ToggleButton, Typography, ToggleButtonGroup } from "@mui/material";
 import React, { useState } from 'react';
-import { getAmmodata, PistolAmmos } from './AmmoData';
-import { AmmoDataEntry } from './AmmoData'
-import CheckIcon from '@mui/icons-material/Check';
-import { AmmoCateMap } from './TarkovApiService';
+import { AmmoCateMap ,AmmoData,getAmmodata} from './TarkovApiService';
 
 type Props = {
-  applyAmmoData: (entries: AmmoDataEntry[]) => void;
+  applyAmmoData: (entries: AmmoData[]) => void;
 }
 
 const Buttons = (props: Props) => {
@@ -40,23 +37,32 @@ const Buttons = (props: Props) => {
       </ToggleButton>
     )
   }
-  const buttonArr = []
+  const buttonArr: JSX.Element[] = [];
   AmmoCateMap.forEach((array, cate) => {
     buttonArr.push(
-      <Typography variant="h6" align="left" color='text.primary' gutterBottom>
-      {cate}
-    </Typography>
-    <ToggleButtonGroup
-      style={{ flexWrap: "wrap" }}
-      size="small"
-      value={ammoId}
-      onChange={handleChange}
-      aria-label="text formatting"
-    >
-      {array.map(ammo => <ToggleButton value={ammo}>{ammo}</ToggleButton>)}
-    </ToggleButtonGroup>)
-  }
-    )
+      <>
+        <Typography
+          variant="h6"
+          align="left"
+          color="text.primary"
+          gutterBottom
+        >
+          {cate}
+        </Typography>
+        <ToggleButtonGroup
+          style={{ flexWrap: "wrap" }}
+          size="small"
+          value={ammoId}
+          onChange={handleChange}
+          aria-label="text formatting"
+        >
+          {array.map((ammo) => (
+            <ToggleButton value={ammo}>{ammo}</ToggleButton>
+          ))}
+        </ToggleButtonGroup>
+      </>
+    );
+  });
 
   return (
     <>

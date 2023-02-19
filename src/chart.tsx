@@ -3,13 +3,13 @@ import { height, width } from '@mui/system';
 import React, { FunctionComponent, PureComponent, useState } from 'react';
 import { ScatterChart, Scatter, XAxis, Line, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, TooltipProps, Legend, LabelList, ReferenceLine } from 'recharts';
 import { ValueType, NameType } from 'recharts/types/component/DefaultTooltipContent';
-import { AmmoDataEntry, SVG } from './AmmoData'
+import { AmmoData,getAmmodata} from './TarkovApiService';
 
 const CustomTooltip = (args: TooltipProps<ValueType, NameType>) => {
   if (args.active) {
     //console.log(args)
     //payloadにargsにammoのデータが入っているところを入れる
-    const payload: AmmoDataEntry = args.payload?.[0].payload;
+    const payload: AmmoData = args.payload?.[0].payload;
     //payloadから簡単に取り出せるようになる
     return (
       <Box
@@ -23,10 +23,10 @@ const CustomTooltip = (args: TooltipProps<ValueType, NameType>) => {
           },
         }}>
         <div className="custom-tooltip">
-          <img src={payload.image}></img>
-          <p className="label">{`NAME:${payload.id}`}</p>
-          <p className="label">{`DMG:${payload.damage}`}</p>
-          <p className="desc">{`PENE:${payload.penetration}`}</p>
+          <img src={payload.iconLink}></img>
+          <p className="label">{`NAME:${payload.name}`}</p>
+          <p className="label">{`DMG:${payload.totalDamage}`}</p>
+          <p className="desc">{`PENE:${payload.penetrationPower}`}</p>
 
         </div>
       </Box>
@@ -63,7 +63,7 @@ const CustomizedDot = (props: any) => {
 }
 
 type Props = {
-  entries: AmmoDataEntry[];//union型にすることにより、underfinedを許容している。
+  entries: AmmoData[];
 };
 //props.entriesを作っておくことで、Rootから入力を受け取れるようにする
 const Ammochart = ({ entries }: Props) => {
@@ -113,7 +113,7 @@ const Ammochart = ({ entries }: Props) => {
         <Scatter
           data={entries}
           stroke="#fbd38d"
-          shape={<CustomizedDot />}>
+          >
           <LabelList
             dataKey="id"
             position='bottom'
@@ -121,7 +121,7 @@ const Ammochart = ({ entries }: Props) => {
         </Scatter>
       </ScatterChart>
     </ResponsiveContainer>
-  );
+  );//shape={<CustomizedDot />}
 }
 
 export default Ammochart;

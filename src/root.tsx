@@ -1,7 +1,5 @@
 import { Button, createTheme, CssBaseline, ThemeProvider } from "@mui/material";
 import React, { useState } from "react";
-import {AmmoDataEntry} from './AmmoData'
-import { getAmmodata } from './AmmoData'
 import Chart from './Chart'
 import Buttons from './Buttons'
 import Footer from './Footer'
@@ -10,6 +8,7 @@ import Headertest from './AppBar'
 import Armordmgcalc from "./ArmorDmgCalc";
 import './root.css'
 import Table from "./Table";
+import { getAmmodata,AmmoData } from './TarkovApiService';
 
 const tarkovTheme = createTheme({
     palette: {
@@ -41,8 +40,7 @@ function Root() {
     //setAmmodataはammodataというストレージにアクセスするためのもの 次のammodataに内容を渡して自身に再描画をかける
     //useStateは再描画がかかった時にReact側で保存するためのもの
     //
-    const [ammodata, setAmmodata] = useState<AmmoDataEntry[]>([]);//AmmoDataList型の空を渡してあげている
-    const [ammoSelect, setAmmoSelect] = useState<AmmoDataEntry>();
+    const [ammodata, setAmmodata] = useState<AmmoData[]>([]);//AmmoData型の空を渡してあげている
     return (<div className='container'>
         <ThemeProvider theme={tarkovTheme}>
             <Headertest />
@@ -50,9 +48,7 @@ function Root() {
             <Buttons applyAmmoData={(entries) => setAmmodata(entries)} />
             <Chart entries={ammodata} />
             <Table entries={ammodata} />
-            <Armordmgcalc Testvalue={10} entries={ammoSelect} />
             <Footer />
-            <img src="src/assets/image/9*19/9x19ap.png" />
         </ThemeProvider>
     </div>);
 }
