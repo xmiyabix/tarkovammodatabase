@@ -22,7 +22,6 @@ const Header = () => {
                         gutterBottom
                     >
                         TarkovAmmoChart
-                        {load}
                     </Typography>
                     <Stack
                         sx={{ pt: 4 }}

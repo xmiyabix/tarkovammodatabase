@@ -44,7 +44,7 @@ function toCaliberName(name:string):string{
     return caliberNameMap.get(name)!
 }
 
-const ammoCateMap = new Map<string, string[]>([
+export const AmmoCateMap = new Map<string, string[]>([
     ["Pistol Ammos",[
         "9x18mmPM",
         "9x19mm",
@@ -78,7 +78,7 @@ const ammoCateMap = new Map<string, string[]>([
 ])
 
 const allCalibers:string[] = []
-ammoCateMap.forEach(value=>allCalibers.push(...value))
+AmmoCateMap.forEach(value=>allCalibers.push(...value))
 
 type AmmoData = {
     name:string;
