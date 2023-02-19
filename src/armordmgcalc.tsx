@@ -4,7 +4,7 @@ import reactLogo from './assets/react.svg'
 import { Button } from "@mui/material";
 import React from 'react';
 import { SettingsCellOutlined } from '@mui/icons-material';
-import {AmmoDataEntry} from './ammodata'
+import {AmmoDataEntry} from './AmmoData'
 
 
 

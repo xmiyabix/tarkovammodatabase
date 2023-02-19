@@ -1,13 +1,13 @@
 import { Button, createTheme, CssBaseline, ThemeProvider } from "@mui/material";
 import React, { useState } from "react";
-import {AmmoDataEntry} from './ammodata'
-import { getAmmodata } from './ammodata'
-import Chart from './chart'
-import Buttons from './buttons'
+import {AmmoDataEntry} from './AmmoData'
+import { getAmmodata } from './AmmoData'
+import Chart from './Chart'
+import Buttons from './Buttons'
 import Footer from './Footer'
 import Header from './Header'
-import Headertest from './Appbar'
-import Armordmgcalc from "./armordmgcalc";
+import Headertest from './AppBar'
+import Armordmgcalc from "./ArmorDmgCalc";
 import './root.css'
 import Table from "./Table";
 

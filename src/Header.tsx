@@ -1,6 +1,8 @@
 import { Box, Button, Container, Stack, Typography } from "@mui/material";
+import {useLoadState} from "./TarkovApiService"
 
 const Header = () => {
+    const load = useLoadState()
     return (
         <div>
             <Box
@@ -20,6 +22,7 @@ const Header = () => {
                         gutterBottom
                     >
                         TarkovAmmoChart
+                        {load}
                     </Typography>
                     <Stack
                         sx={{ pt: 4 }}

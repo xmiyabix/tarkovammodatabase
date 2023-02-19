@@ -1,11 +1,9 @@
 import { Button, ToggleButton, Typography, ToggleButtonGroup } from "@mui/material";
 import React, { useState } from 'react';
-import { getAmmodata ,PistolAmmos} from './ammodata';
-import { AmmoDataEntry } from './ammodata'
+import { getAmmodata, PistolAmmos } from './AmmoData';
+import { AmmoDataEntry } from './AmmoData'
 import CheckIcon from '@mui/icons-material/Check';
-import tarkovapi from './Test_tarkovapi copy';
-
-tarkovapi()
+import { } from './TarkovApiService';
 
 type Props = {
   applyAmmoData: (entries: AmmoDataEntry[]) => void;
@@ -30,18 +28,21 @@ const Buttons = (props: Props) => {
   const ToggleButtonWithSVG = (
     ammoName: string,
   ) => {
-    const svg = getAmmodata([ammoName])[0].dotsvg!
+    /*{
+          <svg viewBox="0 0 24 24" width="24" height="24" fill="#fff">
+            <path d={svg.shape} stroke="#fff" stroke-width="2" stroke-linecap="round" />
+          </svg>
+    }//*/
+
     return (
       <ToggleButton value={ammoName}>{ammoName}
-        <svg viewBox="0 0 24 24" width="24" height="24" fill="#fff">
-          <path d={svg.shape} stroke="#fff" stroke-width="2" stroke-linecap="round" />
-        </svg>
+        
       </ToggleButton>
     )
   }
 
   const res = []
-  for(const ammo in PistolAmmos){
+  for (const ammo in PistolAmmos) {
     res.push(ToggleButtonWithSVG(ammo))
   }
 
@@ -65,7 +66,7 @@ const Buttons = (props: Props) => {
           </svg>
         </ToggleButton>
         <Button></Button>
-        {PistolAmmos.map(ammo=>ToggleButtonWithSVG(ammo))}
+        {PistolAmmos.map(ammo => ToggleButtonWithSVG(ammo))}
         <ToggleButton value="9*18">9×18mm</ToggleButton>
         <ToggleButton value="7.62*25">7.62×25mmTT</ToggleButton>
         <ToggleButton value="45acp">45ACP</ToggleButton>

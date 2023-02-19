@@ -1,6 +1,16 @@
 import { request, gql } from "graphql-request";
+import {useState,useEffect} from "react";
 
 
+export function getAmmodata(ids: string[]) {
+    let tmparr: AmmoData[] = [];//tmparrに対してAmmoDataEntry型の空配列を渡している。
+    ids.forEach(id => {
+        if (caliberMap.has(id)) {
+            tmparr.push(...caliberMap.get(id)!)
+        }
+    });
+    return (tmparr);
+};
 
 const caliberNameMap = new Map<string, string>([
     ["Caliber556x45NATO", "5.56x45mm"],
@@ -269,6 +279,20 @@ function processData(from:AmmoDataRaw):AmmoData{
 const caliberMap = new Map<string, AmmoData[]>();
 const allAmmo: AmmoData[] = [];
 
+export function useLoadState(){
+    const [state,setLoadState] = useState(false);
+    useEffect(()=>{
+        listenerArr.push(setLoadState);
+        return ()=>{
+            listenerArr = listenerArr.filter(it=>it!==setLoadState)
+        }
+    },[])
+    return state;
+}
+
+let listenerArr :((newState:boolean)=>void)[]= []
+let loadState = false
+
 request("https://api.tarkov.dev/graphql", queryAllAmmo).then((data) => {
     const rawData:AmmoDataRaw[] = data.ammo
     rawData.forEach((raw) => {
@@ -287,5 +311,6 @@ request("https://api.tarkov.dev/graphql", queryAllAmmo).then((data) => {
             console.log(value)
         }
     });
-    console.log(allAmmo[0])
+    loadState = true
+    listenerArr.forEach(func=>func(true))
 });

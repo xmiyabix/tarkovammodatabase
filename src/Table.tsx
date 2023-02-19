@@ -2,7 +2,7 @@ import * as React from 'react';
 import { DataGrid, GridColDef, GridValueGetterParams, GridCellParams } from '@mui/x-data-grid';
 import clsx from 'clsx';
 import { Box } from '@mui/material';
-import { AmmoDataEntry } from './ammodata'
+import { AmmoDataEntry } from './AmmoData'
 
 const columns: GridColDef[] = [
   { field: 'image', headerName: 'icon', width: 60 ,

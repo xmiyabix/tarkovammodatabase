@@ -3,7 +3,7 @@ import { height, width } from '@mui/system';
 import React, { FunctionComponent, PureComponent, useState } from 'react';
 import { ScatterChart, Scatter, XAxis, Line, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, TooltipProps, Legend, LabelList, ReferenceLine } from 'recharts';
 import { ValueType, NameType } from 'recharts/types/component/DefaultTooltipContent';
-import { AmmoDataEntry, SVG } from './ammodata'
+import { AmmoDataEntry, SVG } from './AmmoData'
 
 const CustomTooltip = (args: TooltipProps<ValueType, NameType>) => {
   if (args.active) {
