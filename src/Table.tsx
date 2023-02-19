@@ -5,19 +5,19 @@ import { Box } from '@mui/material';
 import { AmmoData,getAmmodata} from './TarkovApiService';
 
 const columns: GridColDef[] = [
-  { field: 'iconLink', headerName: 'icon', width: 60 ,
+  { field: 'name', headerName: 'name', width: 200 ,
     //オーバーライド
     //renderCellとは？セル単位でレンダリングを行うコンポーネント？関数？の一種。引数としてParamsを持っていて、そこから画像のパスを受け取っている。
     renderCell: (params) => {
-      console.log("renderTest",params)
+      //console.log("renderTest",params)
       return(
         <div>
-          <p style={{position: 'fixed',top:'100%',width: "100%"}}>{params.id}</p>
-          <img src={params.value} alt="image" style={{ width: "100%" }} />
+          <img src={params.row.iconLink} alt="image" style={{ height: "100%" }} />
+          <p style={{}}>{params.value}</p>
         </div>
         
     )}},
-  { field: 'name', headerName: 'name', width: 200 },
+  //{ field: 'name', headerName: 'name', width: 200 },
   { field: 'totalDamage', headerName: 'Damage', width: 80 },
   { field: 'penetrationPower', headerName: 'Penetration', width: 100 },
   { field: 'armorDamage', headerName: 'ArmorDMG', width: 100 },
