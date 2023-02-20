@@ -2,32 +2,35 @@ import * as React from 'react';
 import { DataGrid, GridColDef, GridValueGetterParams, GridCellParams } from '@mui/x-data-grid';
 import clsx from 'clsx';
 import { Box } from '@mui/material';
-import { AmmoData,getAmmodata} from './TarkovApiService';
+import { AmmoData, getAmmodata } from './TarkovApiService';
 
 const columns: GridColDef[] = [
-  { field: 'name', headerName: 'name', width: 200 ,
+  {
+    field: 'name', headerName: 'name', width: 200,
     //オーバーライド
     //renderCellとは？セル単位でレンダリングを行うコンポーネント？関数？の一種。引数としてParamsを持っていて、そこから画像のパスを受け取っている。
     renderCell: (params) => {
       //console.log("renderTest",params)
-      return(
+      return (
         <div>
           <img src={params.row.iconLink} alt="image" style={{ height: "100%" }} />
           <p style={{}}>{params.value}</p>
         </div>
-        
-    )}},
+
+      )
+    }
+  },
   //{ field: 'name', headerName: 'name', width: 200 },
-  { field: 'totalDamage', headerName: 'Damage', width: 80 },
-  { field: 'penetrationPower', headerName: 'Penetration', width: 100 },
-  { field: 'armorDamage', headerName: 'ArmorDMG', width: 100 },
-  { field: 'accuracyModifier', headerName: 'Accuracy', width: 100 },
-  { field: 'recoilModifier', headerName: 'Recoil', width: 80 },
+  { field: 'totalDamage', headerName: 'Damage', width: 80, headerAlign: 'center' },
+  { field: 'penetrationPower', headerName: 'Penetration', width: 100, headerAlign: 'center' },
+  { field: 'armorDamage', headerName: 'ArmorDMG', width: 100, headerAlign: 'center' },
+  { field: 'accuracyModifier', headerName: 'Accuracy', width: 100, headerAlign: 'center' },
+  { field: 'recoilModifier', headerName: 'Recoil', width: 80, headerAlign: 'center' },
   //{ field: 'fragmentchance', headerName: 'Fragmentchance', width: 130 },
   //{ field: 'ricochet', headerName: 'Ricochet', width: 100 },
-  { field: 'lightBleedModifier', headerName: 'LightBleed', width: 100 },
-  { field: 'heavyBleedModifier', headerName: 'HeavyBleed', width: 100 },
-  { field: 'tracer', headerName: 'tracer', width: 200 }
+  { field: 'lightBleedModifier', headerName: 'LightBleed', width: 100, headerAlign: 'center' },
+  { field: 'heavyBleedModifier', headerName: 'HeavyBleed', width: 100, headerAlign: 'center' },
+  { field: 'tracer', headerName: 'tracer', width: 100, headerAlign: 'center' }
 ];
 //idを指定しないと動かない。本当はidの部分はnameとしたいがMUIデータグリッドには必ずidを指定しないといけない
 
@@ -35,6 +38,18 @@ const columns: GridColDef[] = [
 type Props = {
   entries: AmmoData[];//union型にすることにより、underfinedを許容している。
 };
+const styles = {
+  grid: {
+    // 列ヘッダに背景色を指定
+    '.MuiDataGrid-columnHeaders': {
+      backgroundColor: '#212121',
+      color: '#fff',
+    },
+    "& .MuiDataGrid-columnHeaderCheckbox .MuiDataGrid-columnHeaderTitleContainer": {
+      display: "none"
+    }
+  }
+}
 //参考 https://zenn.dev/ynakamura/articles/e562376735d398
 export default function DataTable({ entries }: Props) //
 {
@@ -60,6 +75,7 @@ export default function DataTable({ entries }: Props) //
         pageSize={15}
         rowsPerPageOptions={[5]}
         checkboxSelection
+        sx={styles.grid}
         //条件式部
         //この条件式を満たす場合、セルの色を変える
         getCellClassName={(params: GridCellParams<number>) => {
@@ -71,4 +87,5 @@ export default function DataTable({ entries }: Props) //
       />
     </Box>
   );
+
 }

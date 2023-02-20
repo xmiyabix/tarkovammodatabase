@@ -112,7 +112,7 @@ const Ammochart = ({ entries }: Props) => {
           strokeDasharray={'3 3'} />
         <Scatter
           data={entries}
-          stroke="#fbd38d"
+          fill="#8884d8"
           >
           <LabelList
             dataKey="id"

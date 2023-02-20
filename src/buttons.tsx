@@ -1,6 +1,7 @@
-import { Button, ToggleButton, Typography, ToggleButtonGroup } from "@mui/material";
+import { FormatAlignJustify, Margin } from "@mui/icons-material";
+import { Button, ToggleButton, Typography, ToggleButtonGroup, Box } from "@mui/material";
 import React, { useState } from 'react';
-import { AmmoCateMap ,AmmoData,getAmmodata} from './TarkovApiService';
+import { AmmoCateMap, AmmoData, getAmmodata } from './TarkovApiService';
 
 type Props = {
   applyAmmoData: (entries: AmmoData[]) => void;
@@ -22,21 +23,6 @@ const Buttons = (props: Props) => {
     props.applyAmmoData(getAmmodata(selected))
     setAmmoId(selected);
   };
-  const ToggleButtonWithSVG = (
-    ammoName: string,
-  ) => {
-    /*{
-          <svg viewBox="0 0 24 24" width="24" height="24" fill="#fff">
-            <path d={svg.shape} stroke="#fff" stroke-width="2" stroke-linecap="round" />
-          </svg>
-    }//*/
-
-    return (
-      <ToggleButton value={ammoName}>{ammoName}
-
-      </ToggleButton>
-    )
-  }
   const buttonArr: JSX.Element[] = [];
   AmmoCateMap.forEach((array, cate) => {
     buttonArr.push(

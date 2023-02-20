@@ -12,7 +12,7 @@ import { getAmmodata,AmmoData } from './TarkovApiService';
 
 const tarkovTheme = createTheme({
     palette: {
-        mode: 'light',
+        mode: 'dark',
         primary: {
             main: '#1b5e20',
             light: '#4c8c4a',
