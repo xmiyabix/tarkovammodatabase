@@ -3,7 +3,7 @@ import { height, width } from '@mui/system';
 import React, { FunctionComponent, PureComponent, useState } from 'react';
 import { ScatterChart, Scatter, XAxis, Line, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, TooltipProps, Legend, LabelList, ReferenceLine } from 'recharts';
 import { ValueType, NameType } from 'recharts/types/component/DefaultTooltipContent';
-import { AmmoData,getAmmodata} from './TarkovApiService';
+import { AmmoData, getAmmodata } from './TarkovApiService';
 
 const CustomTooltip = (args: TooltipProps<ValueType, NameType>) => {
   if (args.active) {
@@ -90,7 +90,7 @@ const Ammochart = ({ entries }: Props) => {
           type="number"
           style={{ fontWeight: 'bold' }} //フォントのスタイルの設定
           stroke="#fbd38d"  //枠線のカラーの設定
-          dataKey="damage"
+          dataKey="totalDamage"
           name="stature"
           unit="DMG"
           tickCount={6}
@@ -99,7 +99,7 @@ const Ammochart = ({ entries }: Props) => {
           type="number"
           style={{ fontWeight: 'bold' }} //フォントのスタイルの設定
           stroke="#fbd38d" //枠線のカラー適用
-          dataKey="penetration"
+          dataKey="penetrationPower"
           name="weight"
           unit="pene"
           ticks={[10, 20, 30, 40, 50, 60]}
@@ -113,11 +113,11 @@ const Ammochart = ({ entries }: Props) => {
         <Scatter
           data={entries}
           fill="#8884d8"
-          >
+        >
           <LabelList
             dataKey="id"
             position='bottom'
-            style={{ pointerEvents: 'none' }} />
+            style={{ pointerEvents: 'none'}} />
         </Scatter>
       </ScatterChart>
     </ResponsiveContainer>

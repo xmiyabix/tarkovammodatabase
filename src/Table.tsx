@@ -6,7 +6,7 @@ import { AmmoData, getAmmodata } from './TarkovApiService';
 
 const columns: GridColDef[] = [
   {
-    field: 'name', headerName: 'name', width: 200,
+    field: 'name', headerName: 'name', flex: 1, maxWidth: 200,
     //オーバーライド
     //renderCellとは？セル単位でレンダリングを行うコンポーネント？関数？の一種。引数としてParamsを持っていて、そこから画像のパスを受け取っている。
     renderCell: (params) => {
@@ -21,16 +21,16 @@ const columns: GridColDef[] = [
     }
   },
   //{ field: 'name', headerName: 'name', width: 200 },
-  { field: 'totalDamage', headerName: 'Damage', width: 80, headerAlign: 'center' },
-  { field: 'penetrationPower', headerName: 'Penetration', width: 100, headerAlign: 'center' },
-  { field: 'armorDamage', headerName: 'ArmorDMG', width: 100, headerAlign: 'center' },
-  { field: 'accuracyModifier', headerName: 'Accuracy', width: 100, headerAlign: 'center' },
-  { field: 'recoilModifier', headerName: 'Recoil', width: 80, headerAlign: 'center' },
+  { field: 'totalDamage', headerName: 'Damage', flex: 1, maxWidth: 100, headerAlign: 'center' , align:'center'},
+  { field: 'penetrationPower', headerName: 'Penetration', flex: 1, maxWidth: 100, headerAlign: 'center' , align:'center'},
+  { field: 'armorDamage', headerName: 'ArmorDMG', flex: 1, maxWidth: 100, headerAlign: 'center' , align:'center'},
+  { field: 'accuracyModifier', headerName: 'Accuracy', flex: 1, maxWidth: 100, headerAlign: 'center' , align:'center'},
+  { field: 'recoilModifier', headerName: 'Recoil', flex: 1, maxWidth: 80, headerAlign: 'center' , align:'center'},
   //{ field: 'fragmentchance', headerName: 'Fragmentchance', width: 130 },
   //{ field: 'ricochet', headerName: 'Ricochet', width: 100 },
-  { field: 'lightBleedModifier', headerName: 'LightBleed', width: 100, headerAlign: 'center' },
-  { field: 'heavyBleedModifier', headerName: 'HeavyBleed', width: 100, headerAlign: 'center' },
-  { field: 'tracer', headerName: 'tracer', width: 100, headerAlign: 'center' }
+  { field: 'lightBleedModifier', headerName: 'LightBleed', flex: 1, maxWidth: 100, headerAlign: 'center' , align:'center'},
+  { field: 'heavyBleedModifier', headerName: 'HeavyBleed', flex: 1, maxWidth: 100, headerAlign: 'center' , align:'center'},
+  { field: 'tracer', headerName: 'tracer', flex: 1, maxWidth: 80, headerAlign: 'center' , align:'center'}
 ];
 //idを指定しないと動かない。本当はidの部分はnameとしたいがMUIデータグリッドには必ずidを指定しないといけない
 
@@ -59,11 +59,11 @@ export default function DataTable({ entries }: Props) //
       sx={{
         height: 600,
         width: '100%',
-        '& .cold': {
+        '& .normal': {
           //backgroundColor: '#ffffffff',
           //color: '#1a3e72',
         },
-        '& .hot': {
+        '& .red': {
           //backgroundColor: '#ff943975',
           color: 'Red',
         },
@@ -79,8 +79,8 @@ export default function DataTable({ entries }: Props) //
         //条件式部
         //この条件式を満たす場合、セルの色を変える
         getCellClassName={(params: GridCellParams<number>) => {
-          if (params.value != null && params.field === 'damage'!) {
-            return params.value >= 85 ? 'hot' : 'cold';
+          if (params.value != null && params.field === 'totalDamage'!) {
+            return params.value >= 85 ? 'red' : 'normal';
           }
           return '';
         }}
