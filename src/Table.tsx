@@ -65,7 +65,7 @@ export default function DataTable({ entries }: Props) //
         },
         '& .red': {
           //backgroundColor: '#ff943975',
-          color: 'Red',
+          color: '#55ff0d',
         },
       }}
     >
