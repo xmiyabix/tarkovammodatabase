@@ -3,6 +3,7 @@ import { height, width } from '@mui/system';
 import React, { FunctionComponent, PureComponent, useState } from 'react';
 import { ScatterChart, Scatter, XAxis, Line, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, TooltipProps, Legend, LabelList, ReferenceLine } from 'recharts';
 import { ValueType, NameType } from 'recharts/types/component/DefaultTooltipContent';
+import { getsvg } from './SvgData';
 import { AmmoData, getAmmodata } from './TarkovApiService';
 
 const CustomTooltip = (args: TooltipProps<ValueType, NameType>) => {
@@ -43,7 +44,8 @@ const tooltipStyle = {
 };
 
 const CustomizedDot = (props: any) => {
-  const { cx, cy, stroke, dotsvg } = props;
+  const { cx, cy, stroke } = props;
+  const dotsvg = getsvg(props.caliber)
   return (
     <svg
       x={cx - 12.5}
@@ -113,11 +115,12 @@ const Ammochart = ({ entries }: Props) => {
         <Scatter
           data={entries}
           fill="#8884d8"
+          shape={<CustomizedDot />}
         >
           <LabelList
             dataKey="id"
             position='bottom'
-            style={{ pointerEvents: 'none'}} />
+            style={{ pointerEvents: 'none' }} />
         </Scatter>
       </ScatterChart>
     </ResponsiveContainer>

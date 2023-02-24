@@ -1,6 +1,7 @@
 import { FormatAlignJustify, Margin } from "@mui/icons-material";
 import { Button, ToggleButton, Typography, ToggleButtonGroup, Box } from "@mui/material";
 import React, { useState } from 'react';
+import { getsvg } from "./SvgData";
 import { AmmoCateMap, AmmoData, getAmmodata } from './TarkovApiService';
 
 type Props = {
@@ -23,6 +24,7 @@ const Buttons = (props: Props) => {
     props.applyAmmoData(getAmmodata(selected))
     setAmmoId(selected);
   };
+
   const buttonArr: JSX.Element[] = [];
   AmmoCateMap.forEach((array, cate) => {
     buttonArr.push(
@@ -42,9 +44,18 @@ const Buttons = (props: Props) => {
           onChange={handleChange}
           aria-label="text formatting"
         >
-          {array.map((ammo) => (
-            <ToggleButton value={ammo}>{ammo}</ToggleButton>
-          ))}
+          {array.map((ammo) => {
+            const svg = getsvg(ammo)
+
+            return (
+              <ToggleButton value={ammo}>
+                <svg viewBox="0 0 24 24" width="24" height="24" fill="#fff" >
+                  <path d={svg.shape} stroke={svg.color} stroke-width={svg.width} stroke-linecap="round" />
+                </svg>
+
+                {ammo}</ToggleButton>
+            )
+          })}
         </ToggleButtonGroup>
       </>
     );
