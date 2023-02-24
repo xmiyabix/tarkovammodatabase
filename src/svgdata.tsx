@@ -1,6 +1,6 @@
 import { AllCalibers } from "./TarkovApiService"
 
-//SVGのデータのみを渡す
+//SVGのデータ型
 export type SVG = {
   shape: string;
   color: string;
@@ -9,10 +9,7 @@ export type SVG = {
 
 const calibersvgMap = new Map<string, SVG>();
 
-function register(name: string, svg: SVG) {
-  calibersvgMap.set(name, svg)
-}
-
+//名前を与えられたら対応するsvgを返す
 export function getsvg(name: string):SVG {
   if (calibersvgMap.has(name))
     return calibersvgMap.get(name)!
@@ -23,6 +20,7 @@ const DefaultSVG = { shape: 'M19 6L6 19M6 6l13 13',fill:'#fff', color: '#fff', w
 //"M60 40a10 10 0 0 0-20 0 10 10 0 0 0 20 0zM50 70a15 15 0 1 1 0-30 15 15 0 0 1 0 30z"
 calibersvgMap.set("name", { shape: 'M19 6L6 19M6 6l13 13', color: '#fff', width: 2 })
 
+//対応するsvgのセット（WIP）
 /*
 calibersvgMap.set( "5.56x45mm",),
 calibersvgMap.set( "12Gauge",),
