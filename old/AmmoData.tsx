@@ -36,7 +36,6 @@ export type SVG = {
 
 const ammoMap = new Map<string, AmmoDataEntry[]>();
 
-
 function register(name: string, svg: SVG, arr: AmmoDataEntryPre[]) {
     const res: AmmoDataEntry[] = new Array(arr.length)
     arr.forEach((value, i) => res[i] = { ...value, dotsvg: svg })
