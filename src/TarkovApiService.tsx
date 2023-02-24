@@ -77,8 +77,8 @@ export const AmmoCateMap = new Map<string, string[]>([
     ]]
 ])
 
-const allCalibers:string[] = []
-AmmoCateMap.forEach(value=>allCalibers.push(...value))
+export const AllCalibers:string[] = []
+AmmoCateMap.forEach(value=>AllCalibers.push(...value))
 
 export type AmmoData = {
     id:string;
