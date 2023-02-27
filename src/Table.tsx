@@ -12,7 +12,7 @@ const columns: GridColDef[] = [
     renderCell: (params) => {
       //console.log("renderTest",params)
       return (
-        <div>
+        <div style={{ display: 'flex', height: "100%" }}>
           <img src={params.row.iconLink} alt="image" style={{ height: "100%" }} />
           <p style={{}}>{params.value}</p>
         </div>
@@ -21,16 +21,16 @@ const columns: GridColDef[] = [
     }
   },
   //{ field: 'name', headerName: 'name', width: 200 },
-  { field: 'totalDamage', headerName: 'Damage', flex: 1, maxWidth: 100, headerAlign: 'center' , align:'center'},
-  { field: 'penetrationPower', headerName: 'Penetration', flex: 1, maxWidth: 100, headerAlign: 'center' , align:'center'},
-  { field: 'armorDamage', headerName: 'ArmorDMG', flex: 1, maxWidth: 100, headerAlign: 'center' , align:'center'},
-  { field: 'accuracyModifier', headerName: 'Accuracy', flex: 1, maxWidth: 100, headerAlign: 'center' , align:'center'},
-  { field: 'recoilModifier', headerName: 'Recoil', flex: 1, maxWidth: 80, headerAlign: 'center' , align:'center'},
+  { field: 'totalDamage', headerName: 'Damage', flex: 1, maxWidth: 100, headerAlign: 'center', align: 'center' },
+  { field: 'penetrationPower', headerName: 'Penetration', flex: 1, maxWidth: 100, headerAlign: 'center', align: 'center' },
+  { field: 'armorDamage', headerName: 'ArmorDMG', flex: 1, maxWidth: 100, headerAlign: 'center', align: 'center' },
+  { field: 'accuracyModifier', headerName: 'Accuracy', flex: 1, maxWidth: 100, headerAlign: 'center', align: 'center' },
+  { field: 'recoilModifier', headerName: 'Recoil', flex: 1, maxWidth: 80, headerAlign: 'center', align: 'center' },
   //{ field: 'fragmentchance', headerName: 'Fragmentchance', width: 130 },
   //{ field: 'ricochet', headerName: 'Ricochet', width: 100 },
-  { field: 'lightBleedModifier', headerName: 'LightBleed', flex: 1, maxWidth: 100, headerAlign: 'center' , align:'center'},
-  { field: 'heavyBleedModifier', headerName: 'HeavyBleed', flex: 1, maxWidth: 100, headerAlign: 'center' , align:'center'},
-  { field: 'tracer', headerName: 'tracer', flex: 1, maxWidth: 80, headerAlign: 'center' , align:'center'}
+  { field: 'lightBleedModifier', headerName: 'LightBleed', flex: 1, maxWidth: 100, headerAlign: 'center', align: 'center' },
+  { field: 'heavyBleedModifier', headerName: 'HeavyBleed', flex: 1, maxWidth: 100, headerAlign: 'center', align: 'center' },
+  { field: 'tracer', headerName: 'tracer', flex: 1, maxWidth: 80, headerAlign: 'center', align: 'center' },
 ];
 //idを指定しないと動かない。本当はidの部分はnameとしたいがMUIデータグリッドには必ずidを指定しないといけない
 
