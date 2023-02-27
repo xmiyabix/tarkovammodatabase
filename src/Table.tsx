@@ -31,6 +31,23 @@ const columns: GridColDef[] = [
   { field: 'lightBleedModifier', headerName: 'LightBleed', flex: 1, maxWidth: 100, headerAlign: 'center', align: 'center' },
   { field: 'heavyBleedModifier', headerName: 'HeavyBleed', flex: 1, maxWidth: 100, headerAlign: 'center', align: 'center' },
   { field: 'tracer', headerName: 'tracer', flex: 1, maxWidth: 80, headerAlign: 'center', align: 'center' },
+  {
+    field: 'buy', headerName: 'costs', flex: 1, maxWidth: 120,
+    renderCell: (params) => {
+      //console.log('buy', params.value[1].priceRUB)
+      //まずは最初に入っている価格を取り出そうとした。うまくいかなった。
+      if (params.value[0].priceRUB != undefined) {
+        return (
+          <p>{params.value[0].priceRUB}</p>
+        )
+      }
+      else{
+        return(
+          <div></div>
+        )
+      }
+    }
+  },
 ];
 //idを指定しないと動かない。本当はidの部分はnameとしたいがMUIデータグリッドには必ずidを指定しないといけない
 
