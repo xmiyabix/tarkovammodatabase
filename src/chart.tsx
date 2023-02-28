@@ -13,17 +13,7 @@ const CustomTooltip = (args: TooltipProps<ValueType, NameType>) => {
     //payloadにargsにammoのデータが入っているところを入れる
     const payload: AmmoData = args.payload?.[0].payload;
     //payloadから簡単に取り出せるようになる
-    return (
-      <Box
-        sx={{
-          width: "100%",
-          height: "100%",
-          backgroundColor: 'primary.dark',
-          '&:hover': {
-            backgroundColor: 'primary.dark',
-            opacity: [0.9, 0.8, 0.7],
-          },
-        }}>
+      return (
         <div className="custom-tooltip" >
           <img src={payload.iconLink}></img>
           <p className="label">{`${payload.name}`}</p>
@@ -31,7 +21,6 @@ const CustomTooltip = (args: TooltipProps<ValueType, NameType>) => {
           <p className="desc">{`PENE:${payload.penetrationPower}`}</p>
 
         </div>
-      </Box>
     );
   }
 
