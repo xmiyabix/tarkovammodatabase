@@ -49,8 +49,8 @@ const Buttons = (props: Props) => {
 
             return (
               <ToggleButton value={ammo}>
-                <svg viewBox="0 0 24 24" width="24" height="24" fill="#fff" >
-                  <path d={svg.shape} stroke={svg.color} stroke-width={svg.width} stroke-linecap="round" />
+                <svg viewBox="0 0 24 24" width="24" height="24" >
+                  <path d={svg.shape} stroke={svg.color} stroke-width={svg.width} stroke-linecap="round" color={svg.color}/>
                 </svg>
 
                 {ammo}</ToggleButton>

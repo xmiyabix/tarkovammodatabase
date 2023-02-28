@@ -15,7 +15,7 @@ export default function ButtonAppBar() {
       <AppBar position="static">
         <Toolbar>
           <Typography variant="h4" component="div" sx={{ flexGrow: 1 }}>
-            Tarkov Ammo databace {load+"!!"}
+            Tarkov Ammo databace
           </Typography>
         </Toolbar>
       </AppBar>

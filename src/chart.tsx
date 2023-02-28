@@ -5,6 +5,7 @@ import { ScatterChart, Scatter, XAxis, Line, YAxis, CartesianGrid, Tooltip, Resp
 import { ValueType, NameType } from 'recharts/types/component/DefaultTooltipContent';
 import { getsvg } from './SvgData';
 import { AmmoData, getAmmodata } from './TarkovApiService';
+import './Chart.css'
 
 const CustomTooltip = (args: TooltipProps<ValueType, NameType>) => {
   if (args.active) {
@@ -15,17 +16,17 @@ const CustomTooltip = (args: TooltipProps<ValueType, NameType>) => {
     return (
       <Box
         sx={{
-          width: "99%",
-          height: "99%",
+          width: "100%",
+          height: "100%",
           backgroundColor: 'primary.dark',
           '&:hover': {
-            backgroundColor: 'primary.main',
+            backgroundColor: 'primary.dark',
             opacity: [0.9, 0.8, 0.7],
           },
         }}>
-        <div className="custom-tooltip">
+        <div className="custom-tooltip" >
           <img src={payload.iconLink}></img>
-          <p className="label">{`NAME:${payload.name}`}</p>
+          <p className="label">{`${payload.name}`}</p>
           <p className="label">{`DMG:${payload.totalDamage}`}</p>
           <p className="desc">{`PENE:${payload.penetrationPower}`}</p>
 

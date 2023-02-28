@@ -8,7 +8,7 @@ import Headertest from './AppBar'
 import Armordmgcalc from "./ArmorDmgCalc";
 import './root.css'
 import Table from "./Table";
-import { getAmmodata,AmmoData } from './TarkovApiService';
+import { getAmmodata,AmmoData, useLoadState } from './TarkovApiService';
 
 const tarkovTheme = createTheme({
     palette: {
@@ -41,6 +41,8 @@ function Root() {
     //useStateは再描画がかかった時にReact側で保存するためのもの
     //
     const [ammodata, setAmmodata] = useState<AmmoData[]>([]);//AmmoData型の空を渡してあげている
+    const load = useLoadState()
+    if (load){
     return (<div className='container'>
         <ThemeProvider theme={tarkovTheme}>
             <Headertest />
@@ -51,6 +53,17 @@ function Root() {
             <Footer />
         </ThemeProvider>
     </div>);
+    }
+    else{
+        return (<div className='container'>
+        <ThemeProvider theme={tarkovTheme}>
+            <Headertest />
+            <CssBaseline />
+            Loading...
+            <Footer />
+        </ThemeProvider>
+    </div>);
+    }
 }
 export default Root
 //<Chart entriesはChart内のprops.entriesに何を入れるかを指定している。

@@ -2,3 +2,12 @@
     background-color: #a9a9a9;
 
   }
+
+.custom-tooltip *{
+  margin: 5px; 
+  background-color: #191919;
+}
+.custom-tooltip{
+  margin-bottom: 0px;
+  background-color: #191919;
+}

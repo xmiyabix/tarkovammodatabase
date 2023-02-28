@@ -80,6 +80,19 @@ export const AmmoCateMap = new Map<string, string[]>([
 export const AllCalibers:string[] = []
 AmmoCateMap.forEach(value=>AllCalibers.push(...value))
 
+export type BuyEntry= {
+    name:string;
+    priceRUB: number;
+    required:{
+        value: number;
+        type:
+            | `playerLevel`
+            | `loyaltyLevel`
+            | `questCompleted`
+            | `stationLevel`;
+    }[]
+}
+
 export type AmmoData = {
     id:string;
     name:string;
@@ -111,18 +124,7 @@ export type AmmoData = {
             count:number
         }[]
     }[]
-    buy:{
-        name:string;
-        priceRUB: number;
-        required:{
-            value: number;
-            type:
-                | `playerLevel`
-                | `loyaltyLevel`
-                | `questCompleted`
-                | `stationLevel`;
-        }[]
-    }[]
+    buy:BuyEntry[]
 };
 
 //== データ取得 ==
@@ -275,7 +277,8 @@ function processData(from:AmmoDataRaw):AmmoData{
             name:entry.vendor.name,
             priceRUB:entry.priceRUB,
             required:entry.requirements
-        })),
+            //firstとsecondを減算して、+か-か=かで判断して、
+        })).sort((first, second) => first.priceRUB  - second.priceRUB),
         tracer:(from.tracer?from.tracerColor:"")
     }
 }

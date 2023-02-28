@@ -2,7 +2,7 @@ import * as React from 'react';
 import { DataGrid, GridColDef, GridValueGetterParams, GridCellParams } from '@mui/x-data-grid';
 import clsx from 'clsx';
 import { Box } from '@mui/material';
-import { AmmoData, getAmmodata } from './TarkovApiService';
+import { AmmoData, getAmmodata,BuyEntry } from './TarkovApiService';
 
 const columns: GridColDef[] = [
   {
@@ -30,22 +30,36 @@ const columns: GridColDef[] = [
   //{ field: 'ricochet', headerName: 'Ricochet', width: 100 },
   { field: 'lightBleedModifier', headerName: 'LightBleed', flex: 1, maxWidth: 100, headerAlign: 'center', align: 'center' },
   { field: 'heavyBleedModifier', headerName: 'HeavyBleed', flex: 1, maxWidth: 100, headerAlign: 'center', align: 'center' },
-  { field: 'tracer', headerName: 'tracer', flex: 1, maxWidth: 80, headerAlign: 'center', align: 'center' },
+  { field: 'tracer', headerName: 'tracer', flex: 1, maxWidth: 100, headerAlign: 'center', align: 'center' },
   {
-    field: 'buy', headerName: 'costs', flex: 1, maxWidth: 120,
+    field: 'buy', headerName: 'costs', flex: 1, maxWidth: 150,headerAlign: 'center', 
+    sortComparator: (a:BuyEntry[] , b:BuyEntry[]) => {
+      if(a.length===0){
+        return 999999
+      }
+      if(b.length===0){
+        return -1
+      }
+      return a[0].priceRUB - b[0].priceRUB; 
+    },
     renderCell: (params) => {
       //console.log('buy', params.value[1].priceRUB)
       //まずは最初に入っている価格を取り出そうとした。うまくいかなった。
-      if (params.value[0].priceRUB != undefined) {
+      if (0 < params.value.length) {
         return (
-          <p>{params.value[0].priceRUB}</p>
+          <div style={{display:'flex',height:"100%"}}>
+          <p>{params.value[0].priceRUB}RUB:</p>
+          <p>{params.value[0].name}</p>
+          </div>
+
         )
       }
-      else{
-        return(
-          <div></div>
+      else {
+        return (
+          <p>NoSale</p>
         )
       }
+      console.log(params.value[0].priceRUB)
     }
   },
 ];
