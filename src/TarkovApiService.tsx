@@ -253,8 +253,8 @@ function processData(from:AmmoDataRaw):AmmoData{
         caliber:toCaliberName(from.caliber),
         totalDamage:from.damage*from.projectileCount,
         totalArmorDamage:from.armorDamage*from.projectileCount,
-        accuracyModifier:from.accuracyModifier*100,
-        recoilModifier:from.recoilModifier*100,
+        accuracyModifier:Math.round(from.accuracyModifier*100),
+        recoilModifier:Math.round(from.recoilModifier*100),
         lightBleedModifier:from.lightBleedModifier*100,
         heavyBleedModifier:from.heavyBleedModifier*100,
         crafts:from.item.craftsFor.map(craft=>({

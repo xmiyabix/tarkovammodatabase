@@ -65,7 +65,7 @@ const Ammochart = ({ entries }: Props) => {
   return (
     //Width９９％に設定するとresizeされるようになる？なぜ？
     //上の件で参考にしたサイトhttps://stackoverflow.com/questions/50891591/recharts-responsive-container-does-not-resize-correctly-in-flexbox
-    <ResponsiveContainer width="99%" height={400}>
+    <ResponsiveContainer width="99%" height={650}>
       <ScatterChart
         margin={{
           top: 20,
@@ -110,13 +110,11 @@ const Ammochart = ({ entries }: Props) => {
           <LabelList
             dataKey="id"
             position='bottom'
-            style={{ pointerEvents: 'none' }} />
+            style={{ pointerEvents: 'none'   ,color: "white"}} />
         </Scatter>
       </ScatterChart>
     </ResponsiveContainer>
-  );//shape={<CustomizedDot />}
+  );
 }
 
 export default Ammochart;
-
-//<Tooltip content={<this.CustomTooltip />} />はthis.をつけないと動かない。（本来は必要なさそう）

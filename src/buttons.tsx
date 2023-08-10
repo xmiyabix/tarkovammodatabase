@@ -11,7 +11,7 @@ type Props = {
 const Buttons = (props: Props) => {
 
   //ammoIdという変数に入れるために、setAmmoIdという関数を呼び出す
-  const [ammoId, setAmmoId] = React.useState(() => ['9x19mm']);
+  const [ammoId, setAmmoId] = React.useState(() => ['']);
   const handleChange = (
     //React.MouseEventを入れることで、handleChangeで求められている引数を満たしている（なお、実際には機能としては使っていない）
     //あくまでサンプルコードそのものである。（実際に自前で書いたとしてもいるので忘れないこと。）
