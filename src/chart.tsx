@@ -3,9 +3,9 @@ import { height, width } from '@mui/system';
 import React, { FunctionComponent, PureComponent, useState } from 'react';
 import { ScatterChart, Scatter, XAxis, Line, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, TooltipProps, Legend, LabelList, ReferenceLine } from 'recharts';
 import { ValueType, NameType } from 'recharts/types/component/DefaultTooltipContent';
-import { getsvg } from './SvgData';
+import { getsvg } from './svgdata';
 import { AmmoData, getAmmodata } from './TarkovApiService';
-import './Chart.css'
+import './chart.css'
 
 const CustomTooltip = (args: TooltipProps<ValueType, NameType>) => {
   if (args.active) {
