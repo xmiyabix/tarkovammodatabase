@@ -1,7 +1,7 @@
 import { FormatAlignJustify, Margin } from "@mui/icons-material";
 import { Button, ToggleButton, Typography, ToggleButtonGroup, Box } from "@mui/material";
 import React, { useState } from 'react';
-import { getsvg } from "./SvgData";
+import { getsvg } from "./svgdata";
 import { AmmoCateMap, AmmoData, getAmmodata } from './TarkovApiService';
 
 type Props = {

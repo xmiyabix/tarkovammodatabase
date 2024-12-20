@@ -1,11 +1,11 @@
 import { Button, createTheme, CssBaseline, ThemeProvider } from "@mui/material";
 import React, { useState } from "react";
-import Chart from './Chart'
-import Buttons from './Buttons'
+import Chart from './chart'
+import Buttons from './buttons'
 import Footer from './Footer'
 import Header from './Header'
-import Headertest from './AppBar'
-import Armordmgcalc from "./ArmorDmgCalc";
+import Headertest from './Appbar'
+import Armordmgcalc from "./armordmgcalc";
 import './root.css'
 import Table from "./Table";
 import { getAmmodata,AmmoData, useLoadState } from './TarkovApiService';
