@@ -1,130 +1,115 @@
 import { request, gql } from "graphql-request";
-import {useState,useEffect} from "react";
-
+import { useState, useEffect } from "react";
 
 export function getAmmodata(ids: string[]) {
-    let tmparr: AmmoData[] = [];//tmparrに対してAmmoDataEntry型の空配列を渡している。
-    ids.forEach(id => {
-        if (caliberMap.has(id)) {
-            tmparr.push(...caliberMap.get(id)!)
-        }
-    });
-    return (tmparr);
-};
+	let tmparr: AmmoData[] = []; //tmparrに対してAmmoDataEntry型の空配列を渡している。
+	ids.forEach((id) => {
+		if (caliberMap.has(id)) {
+			tmparr.push(...caliberMap.get(id)!);
+		}
+	});
+	return tmparr;
+}
 
 const caliberNameMap = new Map<string, string>([
-    ["Caliber556x45NATO", "5.56x45mm"],
-    ["Caliber12g", "12Gauge"],
-    ["Caliber762x54R", "7.62x54mmR"],
-    ["Caliber762x39", "7.62x39mm"],
-    ["Caliber9x19PARA", "9x19mm"],
-    ["Caliber545x39", "5.45x39mm"],
-    ["Caliber762x25TT", "7.62x25mmTT"],
-    ["Caliber9x18PM", "9x18mmPM"],
-    ["Caliber9x39", "9x39mm"],
-    ["Caliber762x51", "762x51mm"],
-    ["Caliber366TKM", ".366TKM"],
-    ["Caliber9x21", "9x21mm"],
-    ["Caliber20g", "20Gauge"],
-    ["Caliber46x30", "4.6x30mm"],
-    ["Caliber127x55", "12.7x55mm"],
-    ["Caliber57x28", "5.7x28mm"],
-    ["Caliber1143x23ACP", ".45ACP"],
-    ["Caliber23x75", "23x75mm"],
-    ["Caliber40x46", "40x46mm"],
-    ["Caliber762x35", ".300Blackout"],
-    ["Caliber86x70", ".338Lapua"],
-    ["Caliber9x33R", ".357Magnum"],
+	["Caliber556x45NATO", "5.56x45mm"],
+	["Caliber12g", "12Gauge"],
+	["Caliber762x54R", "7.62x54mmR"],
+	["Caliber762x39", "7.62x39mm"],
+	["Caliber9x19PARA", "9x19mm"],
+	["Caliber545x39", "5.45x39mm"],
+	["Caliber762x25TT", "7.62x25mmTT"],
+	["Caliber9x18PM", "9x18mmPM"],
+	["Caliber9x39", "9x39mm"],
+	["Caliber762x51", "762x51mm"],
+	["Caliber366TKM", ".366TKM"],
+	["Caliber9x21", "9x21mm"],
+	["Caliber20g", "20Gauge"],
+	["Caliber46x30", "4.6x30mm"],
+	["Caliber127x55", "12.7x55mm"],
+	["Caliber57x28", "5.7x28mm"],
+	["Caliber1143x23ACP", ".45ACP"],
+	["Caliber23x75", "23x75mm"],
+	["Caliber40x46", "40x46mm"],
+	["Caliber762x35", ".300Blackout"],
+	["Caliber86x70", ".338Lapua"],
+	["Caliber9x33R", ".357Magnum"],
 ]);
 
-function toCaliberName(name:string):string{
-    if(!caliberNameMap.has(name)){
-        return name
-    }
-    return caliberNameMap.get(name)!
+function toCaliberName(name: string): string {
+	if (!caliberNameMap.has(name)) {
+		return name;
+	}
+	return caliberNameMap.get(name)!;
 }
 
 export const AmmoCateMap = new Map<string, string[]>([
-    ["Pistol Ammos",[
-        "9x18mmPM",
-        "9x19mm",
-        "9x21mm",
-        "7.62x25mmTT",
-        ".45ACP",
-        ".357Magnum",
-    ]],
-    ["Rifle Ammos",[
-        "5.56x45mm",
-        ".300Blackout",
-        "762x51mm",
-        ".338Lapua",
-        "5.45x39mm",
-        "7.62x39mm",
-        "7.62x54mmR",
-        "9x39mm",
-        "12.7x55mm",
-    ]],
-    ["PDW Ammos",[
-        "4.6x30mm",
-        "5.7x28mm",
-    ]],
-    ["SG Ammos",[
-        "20Gauge",
-        "12Gauge",
-        ".366TKM",
-        "23x75mm",
-        "40x46mm",
-    ]]
-])
+	[
+		"Pistol Ammos",
+		["9x18mmPM", "9x19mm", "9x21mm", "7.62x25mmTT", ".45ACP", ".357Magnum"],
+	],
+	[
+		"Rifle Ammos",
+		[
+			"5.56x45mm",
+			".300Blackout",
+			"762x51mm",
+			".338Lapua",
+			"5.45x39mm",
+			"7.62x39mm",
+			"7.62x54mmR",
+			"9x39mm",
+			"12.7x55mm",
+		],
+	],
+	["PDW Ammos", ["4.6x30mm", "5.7x28mm"]],
+	["SG Ammos", ["20Gauge", "12Gauge", ".366TKM", "23x75mm", "40x46mm"]],
+]);
 
-export const AllCalibers:string[] = []
-AmmoCateMap.forEach(value=>AllCalibers.push(...value))
+export const AllCalibers: string[] = [];
+AmmoCateMap.forEach((value) => AllCalibers.push(...value));
 
-export type BuyEntry= {
-    name:string;
-    priceRUB: number;
-    required:{
-        value: number;
-        type:
-            | `playerLevel`
-            | `loyaltyLevel`
-            | `questCompleted`
-            | `stationLevel`;
-    }[]
-}
+export type BuyEntry = {
+	name: string;
+	priceRUB: number;
+	required: {
+		value: number;
+		type: `playerLevel` | `loyaltyLevel` | `questCompleted` | `stationLevel`;
+	}[];
+};
 
 export type AmmoData = {
-    id:string;
-    name:string;
-    shortName: string;
-    iconLink: string;
-    caliber: string;
-    damage: number;
-    totalDamage:number;
-    projectileCount: number;
-    penetrationPower: number;
-    armorDamage: number;
-    totalArmorDamage:number;
-    accuracyModifier: number;
-    recoilModifier: number;
-    fragmentationChance: number;
-    ricochetChance: number;
-    lightBleedModifier: number;
-    heavyBleedModifier: number;
-    initialSpeed: number;
-    staminaBurnPerDamage: number;
-    tracer: string;
-    crafts:{
-        count:number
-        duration: number;
-        station:string;
-        level:number;
-        required:{
-            name:string
-            count:number
-        }[]
-    }[]
-    buy:BuyEntry[]
+	id: string;
+	name: string;
+	shortName: string;
+	iconLink: string;
+	caliber: string;
+	damage: number;
+	totalDamage: number;
+	projectileCount: number;
+	penetrationPower: number;
+	armorDamage: number;
+	totalArmorDamage: number;
+	accuracyModifier: number;
+	recoilModifier: number;
+	fragmentationChance: number;
+	ricochetChance: number;
+	lightBleedModifier: number;
+	heavyBleedModifier: number;
+	initialSpeed: number;
+	staminaBurnPerDamage: number;
+	tracer: string;
+	crafts: {
+		count: number;
+		duration: number;
+		station: string;
+		level: number;
+		required: {
+			name: string;
+			count: number;
+		}[];
+	}[];
+	buy: BuyEntry[];
 };
 
 //== データ取得 ==
@@ -184,142 +169,140 @@ const queryAllAmmo = `{
     }
 }`;
 
-
 type AmmoDataRaw = {
-    item: {
-        name: string;
-        shortName: string;
-        iconLink: string;
-        buyFor: {
-            vendor: {
-                name: string;
-            };
-            priceRUB: number;
-            requirements: {
-                value: number;
-                type:
-                    | `playerLevel`
-                    | `loyaltyLevel`
-                    | `questCompleted`
-                    | `stationLevel`;
-            }[];
-        }[];
-        craftsFor: {
-            duration: number;
-            station: {
-                name: string;
-            };
-            level: number;
-            requiredItems: {
-                count: number;
-                item: {
-                    name: string;
-                };
-                attributes: {
-                    type: string;
-                    value: string;
-                }[];
-            }[];
-            rewardItems: {
-                count: number;
-            }[];
-        }[];
-    };
-    caliber: string;
-    damage: number;
-    projectileCount: number;
-    penetrationPower: number;
-    armorDamage: number;
-    accuracyModifier: number;
-    recoilModifier: number;
-    fragmentationChance: number;
-    ricochetChance: number;
-    lightBleedModifier: number;
-    heavyBleedModifier: number;
-    initialSpeed: number;
-    staminaBurnPerDamage: number;
-    tracer: boolean;
-    tracerColor: string;
+	item: {
+		name: string;
+		shortName: string;
+		iconLink: string;
+		buyFor: {
+			vendor: {
+				name: string;
+			};
+			priceRUB: number;
+			requirements: {
+				value: number;
+				type:
+					| `playerLevel`
+					| `loyaltyLevel`
+					| `questCompleted`
+					| `stationLevel`;
+			}[];
+		}[];
+		craftsFor: {
+			duration: number;
+			station: {
+				name: string;
+			};
+			level: number;
+			requiredItems: {
+				count: number;
+				item: {
+					name: string;
+				};
+				attributes: {
+					type: string;
+					value: string;
+				}[];
+			}[];
+			rewardItems: {
+				count: number;
+			}[];
+		}[];
+	};
+	caliber: string;
+	damage: number;
+	projectileCount: number;
+	penetrationPower: number;
+	armorDamage: number;
+	accuracyModifier: number;
+	recoilModifier: number;
+	fragmentationChance: number;
+	ricochetChance: number;
+	lightBleedModifier: number;
+	heavyBleedModifier: number;
+	initialSpeed: number;
+	staminaBurnPerDamage: number;
+	tracer: boolean;
+	tracerColor: string;
 };
 
-
-function processData(from:AmmoDataRaw):AmmoData{
-    return{
-        ...from,
-        id:from.item.name,
-        name:from.item.name,
-        shortName:from.item.shortName,
-        iconLink:from.item.iconLink,
-        caliber:toCaliberName(from.caliber),
-        totalDamage:from.damage*from.projectileCount,
-        totalArmorDamage:from.armorDamage*from.projectileCount,
-        accuracyModifier:from.accuracyModifier*100,
-        recoilModifier:from.recoilModifier*100,
-        lightBleedModifier:from.lightBleedModifier*100,
-        heavyBleedModifier:from.heavyBleedModifier*100,
-        crafts:from.item.craftsFor.map(craft=>({
-            duration:craft.duration,
-            count:craft.rewardItems[0].count,
-            station:craft.station.name,
-            level:craft.level,
-            required:craft.requiredItems
-                .filter(item=>{
-                    if(item.attributes.length==0) return true;
-                    const attr = item.attributes[0]
-                    return attr.type==="tool"||attr.value
-                })
-                .map(item=>({
-                    name:item.item.name,
-                    count:item.count
-                })),
-        })),
-        buy:from.item.buyFor.map(entry=>({
-            name:entry.vendor.name,
-            priceRUB:entry.priceRUB,
-            required:entry.requirements
-            //firstとsecondを減算して、+か-か=かで判断して、
-        })).sort((first, second) => first.priceRUB  - second.priceRUB),
-        tracer:(from.tracer?from.tracerColor:"")
-    }
+function processData(from: AmmoDataRaw): AmmoData {
+	return {
+		...from,
+		id: from.item.name,
+		name: from.item.name,
+		shortName: from.item.shortName,
+		iconLink: from.item.iconLink,
+		caliber: toCaliberName(from.caliber),
+		totalDamage: from.damage * from.projectileCount,
+		totalArmorDamage: from.armorDamage * from.projectileCount,
+		accuracyModifier: from.accuracyModifier * 100,
+		recoilModifier: from.recoilModifier * 100,
+		lightBleedModifier: from.lightBleedModifier * 100,
+		heavyBleedModifier: from.heavyBleedModifier * 100,
+		crafts: from.item.craftsFor.map((craft) => ({
+			duration: craft.duration,
+			count: craft.rewardItems[0].count,
+			station: craft.station.name,
+			level: craft.level,
+			required: craft.requiredItems
+				.filter((item) => {
+					if (item.attributes.length == 0) return true;
+					const attr = item.attributes[0];
+					return attr.type === "tool" || attr.value;
+				})
+				.map((item) => ({
+					name: item.item.name,
+					count: item.count,
+				})),
+		})),
+		buy: from.item.buyFor
+			.map((entry) => ({
+				name: entry.vendor.name,
+				priceRUB: entry.priceRUB,
+				required: entry.requirements,
+				//firstとsecondを減算して、+か-か=かで判断して、
+			}))
+			.sort((first, second) => first.priceRUB - second.priceRUB),
+		tracer: from.tracer ? from.tracerColor : "",
+	};
 }
-
-
 
 const caliberMap = new Map<string, AmmoData[]>();
 const allAmmo: AmmoData[] = [];
 
-export function useLoadState(){
-    const [state,setLoadState] = useState(false);
-    useEffect(()=>{
-        listenerArr.push(setLoadState);
-        return ()=>{
-            listenerArr = listenerArr.filter(it=>it!==setLoadState)
-        }
-    },[])
-    return state;
+export function useLoadState() {
+	const [state, setLoadState] = useState(false);
+	useEffect(() => {
+		listenerArr.push(setLoadState);
+		return () => {
+			listenerArr = listenerArr.filter((it) => it !== setLoadState);
+		};
+	}, []);
+	return state;
 }
 
-let listenerArr :((newState:boolean)=>void)[]= []
-let loadState = false
+let listenerArr: ((newState: boolean) => void)[] = [];
+let loadState = false;
 
 request("https://api.tarkov.dev/graphql", queryAllAmmo).then((data) => {
-    const rawData:AmmoDataRaw[] = data.ammo
-    rawData.forEach((raw) => {
-        const ammo = processData(raw);
-        if (!caliberMap.has(ammo.caliber)) {
-            caliberMap.set(ammo.caliber, []);
-        }
-        const list = caliberMap.get(ammo.caliber)!;
-        list.push(ammo);
-        allAmmo.push(ammo)        
-    });
-    console.log("ammo count", allAmmo.length);
-    caliberMap.forEach((value, key) => {
-        console.log(key, value.length);
-        if(key===undefined){
-            console.log(value)
-        }
-    });
-    loadState = true
-    listenerArr.forEach(func=>func(true))
+	const rawData: AmmoDataRaw[] = data.ammo;
+	rawData.forEach((raw) => {
+		const ammo = processData(raw);
+		if (!caliberMap.has(ammo.caliber)) {
+			caliberMap.set(ammo.caliber, []);
+		}
+		const list = caliberMap.get(ammo.caliber)!;
+		list.push(ammo);
+		allAmmo.push(ammo);
+	});
+	console.log("ammo count", allAmmo.length);
+	caliberMap.forEach((value, key) => {
+		console.log(key, value.length);
+		if (key === undefined) {
+			console.log(value);
+		}
+	});
+	loadState = true;
+	listenerArr.forEach((func) => func(true));
 });

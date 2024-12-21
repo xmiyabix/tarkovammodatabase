@@ -7,7 +7,7 @@
     "dev": "vite",
     "build": "tsc && vite build",
     "preview": "vite preview",
-    "test": "./node_modules/.bin/ts-node Test_tarkovapi.tsx"
+    "test": "npx -y tsx Test_tarkovapi.ts"
   },
   "engines": {
     "node": ">=20"
@@ -24,8 +24,7 @@
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "recharts": "^2.3.2",
-    "styled-components": "^5.3.6",
-    "ts-node": "^10.9.1"
+    "styled-components": "^5.3.6"
   },
   "devDependencies": {
     "@types/react": "^18.3.1",
